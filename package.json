@@ -1,11 +1,13 @@
 {
   "name": "httpfy",
   "version": "1.0.0",
-  "description": "",
+  "description": "A fast and multi-purpose HTTP toolkit",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint . --ext .js",
+    "link:fix": "eslint . --ext .js --fix"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/devXprite/httpfy/issues"
   },
-  "homepage": "https://github.com/devXprite/httpfy#readme"
+  "homepage": "https://github.com/devXprite/httpfy#readme",
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
 }
