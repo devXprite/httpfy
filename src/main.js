@@ -1,16 +1,32 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable unicorn/no-array-callback-reference */
+/* eslint-disable unicorn/no-array-method-this-argument */
 /* eslint-disable unicorn/prefer-module */
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-unused-vars */
 const { default: axios } = require('axios');
+const Bluebird = require('bluebird');
 const chalk = require('chalk');
 const handleResponse = require('./handleResponse');
 const { readFile } = require('./helper');
 const httpfyConfig = require('./httpfyConfig');
 
+const {
+  RequestTimeout,
+  maxRedirect,
+  Failed,
+  FailCode,
+  RequestMethods,
+  SupportedMetods,
+  RequestPath,
+  RequestParam,
+  Threads, file,
+  Interval,
+} = httpfyConfig;
+
 const instance = axios.create({
-  timeout: httpfyConfig.RequestTimeout,
-  maxRedirects: httpfyConfig.maxRedirect,
+  timeout: RequestTimeout,
+  maxRedirects: maxRedirect,
   validateStatus: (status) => status >= 0 && status <= 1000,
 });
 
@@ -28,7 +44,7 @@ instance.interceptors.response.use((response) => {
 });
 
 const sendRequest = (url, method) => new Promise(
-  (resolve, _reject) => {
+  (resolve) => {
     instance(url, {
       beforeRedirect: (options) => {
         if (options.protocol.includes('https')) {
@@ -41,44 +57,36 @@ const sendRequest = (url, method) => new Promise(
         handleResponse(url, response);
       })
       .catch((error) => {
-        console.log(`${url} ${chalk.gray('[fail]')}`);
-      }).then(() => {
-        resolve();
-      });
+        if (Failed || FailCode) {
+          const FailedCode = (FailCode) ? (error.code ? `[${error.code}]` : '') : '';
+          console.log(`${url} ${chalk.gray('[fail]')} ${chalk.gray(FailedCode)}`);
+        }
+      }).then((_) => setTimeout(resolve, Interval));
   },
 );
 
 const main = async () => {
   console.log(httpfyConfig);
-  const lines = await readFile(httpfyConfig.file);
-  const {
-    RequestMethods, SupportedMetods, RequestPath, RequestParam,
-  } = httpfyConfig;
+  const lines = await readFile(file);
 
   if (RequestMethods === 'ALL') {
-    await Promise.allSettled(
-      lines.map((line) => new Promise((resolve, _reject) => {
-        const url = line + RequestPath + RequestParam;
-        Promise.allSettled(
-          SupportedMetods.map((method) => new Promise((resolveInner, _rejectInner) => {
-            sendRequest(url, method).then(() => {
-              resolveInner();
-            });
-          })),
-        ).then(() => {
-          resolve();
-        });
-      })),
-    );
+    await Bluebird.map(lines, (line) => new Promise((resolve) => {
+      const url = line + RequestPath + RequestParam;
+
+      Bluebird.map(SupportedMetods, (method) => new Promise((resolveInner) => {
+        sendRequest(url, method).then((_) => resolveInner());
+      }), { concurrency: Threads }).then((_) => resolve());
+    }), { concurrency: Threads });
+
     return;
   }
 
-  await Promise.allSettled(
-    lines.map((line) => new Promise((resolve) => {
-      const url = line + RequestPath + RequestParam;
-      sendRequest(url, RequestMethods).then(() => { resolve(); });
-    })),
-  );
+  await Bluebird.map(lines, (line) => new Promise((resolve) => {
+    const url = line + RequestPath + RequestParam;
+    sendRequest(url, RequestMethods).then(() => { resolve(); });
+  }), { concurrency: Threads });
+
+  console.log('Done');
 };
 
 main();

@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
     "commander": "^9.4.0",
     "jsdom": "^20.0.0",

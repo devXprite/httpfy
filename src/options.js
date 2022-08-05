@@ -21,13 +21,17 @@ program
   .option('-lc, -line-count', 'display response body line count')
   .option('-wc, -word-count', 'display response body word count')
   .option('-server, -web-serve', 'display web server name')
+  .option('-fl, -failed', 'display failed requests')
+  .option('-fc, -fail-code', 'display failed request\'s code')
   .option('-ttl, -title', 'display page title');
 
 program
   .option('-fr, --follow-redirect', 'is follow redirects', true)
   .option('-mr, --max-redirect <number>', 'maximum redirects to follow')
-  .option('-path, --request-path <string>', 'set request path (-path admin)')
+  .option('-t, --threads <number>', 'maximum cocurrent requests send', 100)
+  .option('-i, --interval <number>', 'interval between each thread')
   .option('-x, --request-methods <string>', 'set request methods, use \'all\' to probe all HTTP methods (-x POST)')
+  .option('-path, --request-path <string>', 'set request path (-path admin)')
   .option('-param, --request-param <string>', 'set request parameters (-param id=1)')
   .option('-time, --timeout <number>', 'set request timeout in seconds (-time 60)');
 
