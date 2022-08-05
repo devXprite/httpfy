@@ -20,8 +20,16 @@
   },
   "homepage": "https://github.com/devXprite/httpfy#readme",
   "devDependencies": {
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unicorn": "^43.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "chalk": "^4.1.0",
+    "commander": "^9.4.0",
+    "jsdom": "^20.0.0",
+    "linebyline": "^1.3.0"
   }
 }
