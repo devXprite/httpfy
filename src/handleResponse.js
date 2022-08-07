@@ -19,10 +19,10 @@ const statusColor = (status) => {
   if (/5\d\d/gm.test(status)) return chalk.redBright(`[${status}]`);
 };
 
-const getContentLength = (response) => `[${(response.headers['content-length']) || (response.data).toString().length}]`;
-const getContentType = (response) => `[${(response.headers['content-type']).split(/;/)[0] || 'text/html'}]`;
-const getResponseTime = (response) => (`[${(response.headers['request-duration']) / 1000 || 0}s]`);
-const getWebServer = (response) => `[${(response.headers['x-powered-by'])}`;
+const getContentLength = (response) => (response.headers['content-length']) || (response.data).toString().length;
+const getContentType = (response) => (response.headers['content-type']).split(/;/)[0] || 'text/html';
+const getResponseTime = (response) => (`${(response.headers['request-duration']) / 1000 || 0}s`);
+const getWebServer = (response) => (response.headers['x-powered-by']);
 
 const handleResponse = (urlx, response) => {
   const { status, config } = response;

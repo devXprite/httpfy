@@ -2,12 +2,11 @@ const httpfyConfig = require('./httpfyConfig');
 
 const {
   MatchCode,
-  MatchLineCount,
   MatchLength,
   anyMatch,
 } = httpfyConfig;
 
-const isMatch = (code, length, lineCount) => {
+const isMatch = (code, length) => {
   if (!anyMatch) return true;
 
   if (
@@ -16,6 +15,7 @@ const isMatch = (code, length, lineCount) => {
   ) {
     return true;
   }
+  return false;
 };
 
 module.exports = isMatch;
