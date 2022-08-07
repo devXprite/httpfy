@@ -22,6 +22,7 @@ const {
   RequestParam,
   Threads, file,
   Interval,
+  followRedirect,
 } = httpfyConfig;
 
 const instance = axios.create({
@@ -47,7 +48,7 @@ const sendRequest = (url, method) => new Promise(
   (resolve) => {
     instance(url, {
       beforeRedirect: (options) => {
-        if (options.protocol.includes('https')) {
+        if (followRedirect && options.protocol.includes('http')) {
           console.log(`${url} ${chalk.cyanBright('-->')} ${options.href} ${chalk.magenta('[REDIRECT]')}`);
         }
       },
@@ -89,4 +90,4 @@ const main = async () => {
   console.log('Done');
 };
 
-main();
+module.exports = main;

@@ -3,6 +3,8 @@
 const chalk = require('chalk');
 const httpfyConfig = require('./httpfyConfig');
 
+const isMatch = require('./match');
+
 const getTitle = (response) => {
   const regEx = /<title[^>]*>(.*?)<\/title>/gim;
   const match = regEx.exec(response.data);
@@ -55,10 +57,11 @@ const handleResponse = (urlx, response) => {
     printResult();
   } */
 
-  if (!httpfyConfig.anyMatchProbe) {
+  if (isMatch(status, contentLength)) {
     printResult();
   }
 
+  // printResult();
   // console.log(response.headers);
 };
 

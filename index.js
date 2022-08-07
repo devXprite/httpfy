@@ -1,3 +1,3 @@
-const options = require('./src/options');
+const main = require('./src/main');
 
-console.log(options());
+main();

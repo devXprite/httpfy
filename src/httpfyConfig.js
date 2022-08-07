@@ -21,7 +21,7 @@ const httpfyConfig = {
   MatchLength: options.MatchLength ? new RegExp(options.MatchLength.replace(/,/g, '|')) : false,
   MatchCode: (options.MatchCode) ? new RegExp(options.MatchCode.replace(/,/g, '|')) : false,
   MatchLineCount: options.MatchLineCount ? new RegExp(options.MatchLineCount.replace(/,/g, '|')) : false,
-  anyMatchProbe: Boolean(options.MatchCode || options.MatchLength || options.MatchLineCount),
+  anyMatch: Boolean(options.MatchCode || options.MatchLength || options.MatchLineCount),
   RequestMethods: (options.requestMethods || 'GET').toUpperCase(),
   RequestParam: (options.requestParam) ? praseRequestParameter(options.requestParam) : '',
   RequestPath: (options.requestPath) ? praseRequestPath(options.requestPath) : '/',
@@ -30,5 +30,8 @@ const httpfyConfig = {
   maxRedirect: ((options.followRedirect) ?? false) ? Number(options.maxRedirect || 10) : 0,
   SupportedMetods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 };
+
+console.log(typeof (httpfyConfig.MatchCode));
+console.log(httpfyConfig.MatchCode);
 
 module.exports = httpfyConfig;

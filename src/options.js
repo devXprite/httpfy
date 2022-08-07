@@ -26,7 +26,7 @@ program
   .option('-ttl, -title', 'display page title');
 
 program
-  .option('-fr, --follow-redirect', 'is follow redirects', true)
+  .option('-fr, --follow-redirect', 'is follow redirects')
   .option('-mr, --max-redirect <number>', 'maximum redirects to follow')
   .option('-t, --threads <number>', 'maximum cocurrent requests send', 100)
   .option('-i, --interval <number>', 'interval between each thread')
