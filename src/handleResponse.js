@@ -25,7 +25,7 @@ const getResponseTime = (response) => (`${(response.headers['request-duration'])
 const getWebServer = (response) => (response.headers['x-powered-by']);
 
 const handleResponse = (urlx, response) => {
-  const { status, config } = response;
+  const { status, config, data } = response;
   const { url } = config;
 
   const title = httpfyConfig.Title ? getTitle(response) : '\b';
@@ -45,24 +45,9 @@ const handleResponse = (urlx, response) => {
     );
   };
 
-  /*   if ((httpfyConfig.MatchCode && httpfyConfig.MatchCode.test(status))) {
+  if (isMatch(status, contentLength, data)) {
     printResult();
   }
-
-  if ((httpfyConfig.MatchLength && httpfyConfig.MatchLength.test(status))) {
-    printResult();
-  }
-
-  if ((httpfyConfig.MatchLineCount && httpfyConfig.MatchLineCount.test(status))) {
-    printResult();
-  } */
-
-  if (isMatch(status, contentLength)) {
-    printResult();
-  }
-
-  // printResult();
-  // console.log(response.headers);
 };
 
 module.exports = handleResponse;

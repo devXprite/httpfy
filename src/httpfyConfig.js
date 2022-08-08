@@ -35,7 +35,7 @@ const httpfyConfig = {
   FilterLength: opt.FilterLength ? new RegExp((opt.FilterLength.split(',')).map((i) => `^${i}$`).join('|')) : false,
   FilterCode: (opt.FilterCode) ? new RegExp((opt.FilterCode.split(',')).map((i) => `^${i}$`).join('|')) : false,
   FilterLineCount: opt.FilterLineCount ? new RegExp((opt.FilterLineCount.split(',')).map((i) => `^${i}$`).join('|')) : false,
-  anyMatch: Boolean(opt.MatchCode || opt.MatchLength || opt.MatchLineCount),
+  anyMatch: Boolean(opt.MatchCode || opt.MatchLength || opt.MatchLineCount || opt.MatchString),
   anyFilter: Boolean(opt.FilterCode || opt.FilterLength || opt.FilterLineCount),
   SupportedMetods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 };
