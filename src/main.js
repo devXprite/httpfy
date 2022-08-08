@@ -24,6 +24,7 @@ const {
   Interval,
   followRedirect,
   UserAgent,
+  Cookie,
 } = httpfyConfig;
 
 const instance = axios.create({
@@ -32,6 +33,7 @@ const instance = axios.create({
   validateStatus: (status) => status >= 0 && status <= 1000,
   headers: {
     'User-Agent': UserAgent,
+    Cookie,
   },
 });
 

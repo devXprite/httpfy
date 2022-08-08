@@ -30,6 +30,7 @@ program
   .option('-mr, --max-redirect <number>', 'maximum redirects to follow')
   .option('-t, --threads <number>', 'maximum cocurrent requests send', 100)
   .option('-i, --interval <number>', 'interval between each thread')
+  .option('-c, --cookie <string>', 'send cookies')
   .option('-x, --request-methods <string>', 'set request methods, use \'all\' to probe all HTTP methods')
   .option('-path, --request-path <string>', 'set request path')
   .option('-param, --request-param <string>', 'set request parameters')

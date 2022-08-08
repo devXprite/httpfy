@@ -24,6 +24,7 @@ const httpfyConfig = {
   followRedirect: (opt.followRedirect) ?? false,
   Interval: Number(opt.interval) * 1000 || 0,
   UserAgent: (opt.userAgent) || sample(userAgents),
+  Cookie: (opt.cookie) || '',
   RequestMethods: (opt.requestMethods || 'GET').toUpperCase(),
   RequestParam: (opt.requestParam) ? praseRequestParameter(opt.requestParam) : '',
   RequestPath: (opt.requestPath) ? praseRequestPath(opt.requestPath) : '/',
