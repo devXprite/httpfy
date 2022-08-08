@@ -23,12 +23,16 @@ const {
   Threads, file,
   Interval,
   followRedirect,
+  UserAgent,
 } = httpfyConfig;
 
 const instance = axios.create({
   timeout: RequestTimeout,
   maxRedirects: maxRedirect,
   validateStatus: (status) => status >= 0 && status <= 1000,
+  headers: {
+    'User-Agent': UserAgent,
+  },
 });
 
 instance.interceptors.request.use((config) => {

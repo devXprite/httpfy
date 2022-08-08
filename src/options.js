@@ -30,22 +30,23 @@ program
   .option('-mr, --max-redirect <number>', 'maximum redirects to follow')
   .option('-t, --threads <number>', 'maximum cocurrent requests send', 100)
   .option('-i, --interval <number>', 'interval between each thread')
-  .option('-x, --request-methods <string>', 'set request methods, use \'all\' to probe all HTTP methods (-x POST)')
-  .option('-path, --request-path <string>', 'set request path (-path admin)')
-  .option('-param, --request-param <string>', 'set request parameters (-param id=1)')
-  .option('-time, --timeout <number>', 'set request timeout in seconds (-time 60)');
+  .option('-x, --request-methods <string>', 'set request methods, use \'all\' to probe all HTTP methods')
+  .option('-path, --request-path <string>', 'set request path')
+  .option('-param, --request-param <string>', 'set request parameters')
+  .option('-ua, --user-agent <string>', 'set custom useragent')
+  .option('-time, --timeout <number>', 'set request timeout in seconds');
 
 program
   .option('-mc, -match-code <string>', 'match response with specified status code (-mc 200,302)')
   .option('-ml, -match-length <string>', 'match response with specified content length (-ml 100,102)')
-  .option('-mlc, -match-line-count <string> ', 'match response body with specified line count (-mlc 423,532)');
+  .option('-mlc, -match-line-count <string> ', 'match response body with specified line count (-mlc 423,532)')
+  .option('-ms, -match-string <string> ', 'match response with specified strings');
 
 program.option('-o , --output-file <path>', 'save results in a single file')
   .option('-of, --output-folder <path>', 'save results multiple files accoring to status code');
 
 program.parse();
-// const options = program.opts();
-// console.log(options);
+
 console.log(program.opts());
 
 module.exports = program.opts();
