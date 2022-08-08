@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable unicorn/no-array-method-this-argument */
-/* eslint-disable unicorn/prefer-module */
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 const { default: axios } = require('axios');
@@ -27,6 +26,9 @@ const {
   Cookie,
 } = httpfyConfig;
 
+/**
+ * Create Axios instance
+ */
 const instance = axios.create({
   timeout: RequestTimeout,
   maxRedirects: maxRedirect,
@@ -37,6 +39,9 @@ const instance = axios.create({
   },
 });
 
+/**
+ * Record Response Time
+ */
 instance.interceptors.request.use((config) => {
   config.headers['request-startTime'] = process.hrtime();
   return config;
@@ -50,7 +55,14 @@ instance.interceptors.response.use((response) => {
   return response;
 });
 
-const sendRequest = (url, method) => new Promise(
+/**
+ * Send Axios Request
+ * @async
+ * @param {string} url Target URL
+ * @param {string} method Request Method
+ * @returns {Promise} Promise
+ */
+const sendRequest = async (url, method) => new Promise(
   (resolve) => {
     instance(url, {
       beforeRedirect: (options) => {
@@ -61,7 +73,7 @@ const sendRequest = (url, method) => new Promise(
       method,
     })
       .then((response) => {
-        handleResponse(url, response);
+        handleResponse(response);
       })
       .catch((error) => {
         if (Failed || FailCode) {
@@ -72,8 +84,13 @@ const sendRequest = (url, method) => new Promise(
   },
 );
 
+/**
+ * Main Function
+ * @async
+ * @returns {void}
+ */
 const main = async () => {
-  console.log(httpfyConfig);
+  /** @type {Array} */
   const lines = await readFile(file);
 
   if (RequestMethods === 'ALL') {

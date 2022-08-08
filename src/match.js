@@ -7,6 +7,14 @@ const {
   anyMatch,
 } = httpfyConfig;
 
+/**
+ * A function to check if Response match
+ *
+ * @param {number} code Reponse Code
+ * @param {number} length Response Length
+ * @param {string} data Response Data
+ * @return {boolean}
+ */
 const isMatch = (code, length, data) => {
   if (!anyMatch) return true;
 

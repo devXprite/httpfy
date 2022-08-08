@@ -7,6 +7,7 @@ const userAgents = require('../db/useragents.json');
 const praseRequestParameter = (string) => `?${string.replace(/,/g, '&')}`;
 const praseRequestPath = (path) => (!path.startsWith('/') ? `/${opt.requestPath}` : path);
 
+/** @type {Object} */
 const httpfyConfig = {
   file: opt.file,
   StatusCode: opt.StatusCode ?? true,
@@ -38,7 +39,7 @@ const httpfyConfig = {
   FilterLineCount: opt.FilterLineCount ? new RegExp((opt.FilterLineCount.split(',')).map((i) => `^${i}$`).join('|')) : false,
   anyMatch: Boolean(opt.MatchCode || opt.MatchLength || opt.MatchLineCount || opt.MatchString),
   anyFilter: Boolean(opt.FilterCode || opt.FilterLength || opt.FilterLineCount),
-  SupportedMetods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  SupportedMetods: ['GET', 'DELETE', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'PATCH'],
 };
 
 module.exports = httpfyConfig;
