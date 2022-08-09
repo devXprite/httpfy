@@ -27,7 +27,7 @@ const getTitle = (data) => {
 const coloredStatus = (status) => {
   if (/2\d\d/gm.test(status)) return chalk.greenBright(`[${status}]`);
   if (/3\d\d/gm.test(status)) return chalk.yellowBright(`[${status}]`);
-  if (/4\d\d/gm.test(status)) return chalk.magentaBright(`[${status}]`);
+  if (/4\d\d/gm.test(status)) return chalk.red(`[${status}]`);
   if (/5\d\d/gm.test(status)) return chalk.redBright(`[${status}]`);
 };
 
@@ -112,14 +112,14 @@ const handleResponse = (response) => {
    * @returns {string}
    */
   const result = () => `${url} ${coloredStatus(status)}`
-    + `${httpfyConfig.Method ? chalk.hex('#e002e0')(` [${method.toUpperCase()}]`) : ''}`
+    + `${httpfyConfig.Method ? chalk.hex('#FFA500')(` [${method.toUpperCase()}]`) : ''}`
     + `${httpfyConfig.ContentLength ? chalk.cyan(` [${contentLength}]`) : ''}`
     + `${httpfyConfig.Title ? chalk.hex('#f4a460')(` [${title}]`) : ''}`
     + `${httpfyConfig.ContentType ? chalk.yellow(` [${contentType}]`) : ''}`
     + `${httpfyConfig.ResponseTime ? chalk.hex('#6495ed')(` [${responseTime}]`) : ''}`
-    + `${httpfyConfig.WebServe ? chalk.hex('#FFA500')(` [${server}]`) : ''}`
     + `${httpfyConfig.LineCount ? chalk.magenta(` [${'0 lines'}]`) : ''}`
-    + `${httpfyConfig.WordCount ? chalk.hex('#8fbc8f')(` [${wordCount}]`) : ''}`;
+    + `${httpfyConfig.WordCount ? chalk.hex('#8fbc8f')(` [${wordCount}]`) : ''}`
+    + `${httpfyConfig.WebServe ? chalk.hex('#e002e0')(` [${server}]`) : ''}`;
 
   if (isMatch(status, contentLength, data)) {
     console.log(result());
