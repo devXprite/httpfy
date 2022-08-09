@@ -64,6 +64,18 @@ const getResponseTime = (response) => (`${(response.headers['request-duration'])
 const getWebServer = (response) => (response.headers['x-powered-by'] || response.headers.server || '');
 
 /**
+ * A function to return Response Words Length
+ *
+ * @param {string} data Axios Response Data
+ * @returns {string} Words Length
+ */
+const getWordCount = (data) => {
+  const filterData = data.replace(/(^\s*)|(\s*$)/gi, '').replace(/[ ]{2,}/gi, ' ').replace(/\n /, '\n');
+  const { length } = filterData.split(' ').filter((str) => str !== '');
+  return `${length} words`;
+};
+
+/**
  * A function to handle Axios response
  *
  * @param {string} response Axios Response
@@ -92,6 +104,9 @@ const handleResponse = (response) => {
   /** @type {string} */
   const server = httpfyConfig.WebServe ? getWebServer(response) : '';
 
+  /** @type {string} */
+  const wordCount = httpfyConfig.WordCount ? getWordCount(data) : '';
+
   /**
    * Resturn result for print in console
    * @returns {string}
@@ -104,7 +119,7 @@ const handleResponse = (response) => {
     + `${httpfyConfig.ResponseTime ? chalk.hex('#6495ed')(` [${responseTime}]`) : ''}`
     + `${httpfyConfig.WebServe ? chalk.hex('#FFA500')(` [${server}]`) : ''}`
     + `${httpfyConfig.LineCount ? chalk.magenta(` [${'0 lines'}]`) : ''}`
-    + `${httpfyConfig.WordCount ? chalk.hex('#8fbc8f')(` [${'0 words'}]`) : ''}`;
+    + `${httpfyConfig.WordCount ? chalk.hex('#8fbc8f')(` [${wordCount}]`) : ''}`;
 
   if (isMatch(status, contentLength, data)) {
     console.log(result());
