@@ -18,5 +18,9 @@ module.exports = {
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prefer-module': 'off',
     'unicorn/filename-case': 'off',
+    'unicorn/explicit-length-check': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+    'consistent-return': 'off',
+
   },
 };

@@ -1,8 +1,10 @@
-/* eslint-disable unicorn/explicit-length-check */
-/* eslint-disable no-unused-vars */
+/**
+ * Handle Axios Response
+ * @module handleResponse
+ */
+
 const chalk = require('chalk');
 const httpfyConfig = require('./httpfyConfig');
-
 const isMatch = require('./match');
 
 /**
@@ -20,9 +22,8 @@ const getTitle = (data) => {
  * A Function to return Colored Status
  *
  * @param {Number} status Response Status Code
- * @return {string}
+ * @return {string} Return colored status
  */
-// eslint-disable-next-line consistent-return
 const statusColor = (status) => {
   if (/2\d\d/gm.test(status)) return chalk.greenBright(`[${status}]`);
   if (/3\d\d/gm.test(status)) return chalk.yellowBright(`[${status}]`);
@@ -70,13 +71,24 @@ const getWebServer = (response) => (response.headers['x-powered-by']);
  */
 const handleResponse = (response) => {
   const { status, config, data } = response;
+
+  /** @type {string} */
   const { url } = config;
 
+  /** @type {string} */
   const title = httpfyConfig.Title ? getTitle(response) : '\b';
+
+  /** @type {number|string} */
   const contentLength = httpfyConfig.ContentLength ? getContentLength(response) : '\b';
+
+  /** @type {string} */
   const contentType = httpfyConfig.ContentType ? getContentType(response) : '\b';
+
+  /** @type {number|string} */
   const responseTime = httpfyConfig.ResponseTime ? getResponseTime(response) : '\b';
-  const server = httpfyConfig.WebServe ? getResponseTime(response) : '\b';
+
+  /** @type {string} */
+  const server = httpfyConfig.WebServe ? getWebServer(response) : '\b';
 
   /**
    * A function to print result on console

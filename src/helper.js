@@ -12,7 +12,7 @@ const throwError = (message) => {
  * A Function that Return Urls Array from file
  *
  * @param {string} filePath File Path
- * @returns {Promise<Array>} URLs Array
+ * @returns {Promise<string[]>} URLs Array
  */
 const readFile = (filePath) => new Promise((resolve, reject) => {
   fs.readFile(filePath, (error, data) => {

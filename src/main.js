@@ -39,9 +39,6 @@ const instance = axios.create({
   },
 });
 
-/**
- * Record Response Time
- */
 instance.interceptors.request.use((config) => {
   config.headers['request-startTime'] = process.hrtime();
   return config;
@@ -90,7 +87,7 @@ const sendRequest = async (url, method) => new Promise(
  * @returns {void}
  */
 const main = async () => {
-  /** @type {Array} */
+  /** @type {Array<string>} */
   const lines = await readFile(file);
 
   if (RequestMethods === 'ALL') {
