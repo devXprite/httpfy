@@ -21,6 +21,8 @@ program
   .option('-lc, -line-count', 'display response body line count')
   .option('-wc, -word-count', 'display response body word count')
   .option('-server, -web-serve', 'display web server name')
+  .option('-m, -method', 'display http request method')
+
   .option('-fl, -failed', 'display failed requests')
   .option('-fc, -fail-code', 'display failed request\'s code')
   .option('-ttl, -title', 'display page title');

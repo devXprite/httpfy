@@ -28,6 +28,7 @@ const praseRequestPath = (path) => (!path.startsWith('/') ? `/${opt.requestPath}
  * @property {boolean} WordCount
  * @property {boolean} WebServe
  * @property {boolean} Title
+ * @property {boolean} Method
  * @property {boolean} Failed
  * @property {boolean} FailCode
  * @property {boolean} followRedirect
@@ -64,6 +65,7 @@ const httpfyConfig = {
   WordCount: opt.WordCount ?? false,
   WebServe: opt.WebServe ?? false,
   Title: opt.Title ?? false,
+  Method: opt.Method ?? false,
   Failed: opt.Failed ?? false,
   FailCode: opt.FailCode ?? false,
   Threads: Number(opt.threads) || 100,

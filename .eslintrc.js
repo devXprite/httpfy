@@ -21,6 +21,7 @@ module.exports = {
     'unicorn/explicit-length-check': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'consistent-return': 'off',
+    'unicorn/better-regex': 'off',
 
   },
 };

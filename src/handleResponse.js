@@ -13,9 +13,9 @@ const isMatch = require('./match');
  * @returns {string} title
  */
 const getTitle = (data) => {
-  const regEx = /<title[^>]*>(.*?)<\/title>/gim;
+  const regEx = /(?:<title[^>]*>)(.*?)(?:<\/title>)/gim;
   const match = regEx.exec(data);
-  return (match?.[1]) ? `[${match[1]}]` : '[untitled]';
+  return match[1] || 'untitled';
 };
 
 /**
@@ -24,7 +24,7 @@ const getTitle = (data) => {
  * @param {Number} status Response Status Code
  * @return {string} Return colored status
  */
-const statusColor = (status) => {
+const coloredStatus = (status) => {
   if (/2\d\d/gm.test(status)) return chalk.greenBright(`[${status}]`);
   if (/3\d\d/gm.test(status)) return chalk.yellowBright(`[${status}]`);
   if (/4\d\d/gm.test(status)) return chalk.magentaBright(`[${status}]`);
@@ -61,7 +61,7 @@ const getResponseTime = (response) => (`${(response.headers['request-duration'])
  * @param {string} response Axios Response
  * @returns {string} Web Server
  */
-const getWebServer = (response) => (response.headers['x-powered-by']);
+const getWebServer = (response) => (response.headers['x-powered-by'] || response.headers.server || '');
 
 /**
  * A function to handle Axios response
@@ -70,43 +70,44 @@ const getWebServer = (response) => (response.headers['x-powered-by']);
  * @returns {void}
  */
 const handleResponse = (response) => {
-  const { status, config, data } = response;
+  const {
+    status, config, data,
+  } = response;
 
   /** @type {string} */
-  const { url } = config;
+  const { url, method } = config;
 
   /** @type {string} */
-  const title = httpfyConfig.Title ? getTitle(response) : '\b';
+  const title = httpfyConfig.Title ? getTitle(data) : '';
 
   /** @type {number|string} */
-  const contentLength = httpfyConfig.ContentLength ? getContentLength(response) : '\b';
+  const contentLength = httpfyConfig.ContentLength ? getContentLength(response) : '';
 
   /** @type {string} */
-  const contentType = httpfyConfig.ContentType ? getContentType(response) : '\b';
+  const contentType = httpfyConfig.ContentType ? getContentType(response) : '';
 
   /** @type {number|string} */
-  const responseTime = httpfyConfig.ResponseTime ? getResponseTime(response) : '\b';
+  const responseTime = httpfyConfig.ResponseTime ? getResponseTime(response) : '';
 
   /** @type {string} */
-  const server = httpfyConfig.WebServe ? getWebServer(response) : '\b';
+  const server = httpfyConfig.WebServe ? getWebServer(response) : '';
 
   /**
-   * A function to print result on console
-   * @returns {void}
+   * Resturn result for print in console
+   * @returns {string}
    */
-  const printResult = () => {
-    console.log(
-      url,
-      statusColor(status),
-      chalk.cyan(title),
-      chalk.magenta(contentLength),
-      chalk.yellow(responseTime),
-      chalk.cyan(contentType),
-    );
-  };
+  const result = () => `${url} ${coloredStatus(status)}`
+    + `${httpfyConfig.Method ? chalk.hex('#e002e0')(` [${method.toUpperCase()}]`) : ''}`
+    + `${httpfyConfig.ContentLength ? chalk.cyan(` [${contentLength}]`) : ''}`
+    + `${httpfyConfig.Title ? chalk.hex('#f4a460')(` [${title}]`) : ''}`
+    + `${httpfyConfig.ContentType ? chalk.yellow(` [${contentType}]`) : ''}`
+    + `${httpfyConfig.ResponseTime ? chalk.hex('#6495ed')(` [${responseTime}]`) : ''}`
+    + `${httpfyConfig.WebServe ? chalk.hex('#FFA500')(` [${server}]`) : ''}`
+    + `${httpfyConfig.LineCount ? chalk.magenta(` [${'0 lines'}]`) : ''}`
+    + `${httpfyConfig.WordCount ? chalk.hex('#8fbc8f')(` [${'0 words'}]`) : ''}`;
 
   if (isMatch(status, contentLength, data)) {
-    printResult();
+    console.log(result());
   }
 };
 
