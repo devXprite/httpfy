@@ -33,6 +33,7 @@
 </div>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -40,28 +41,32 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-You need `NodeJs` 10 or later to run this tool. You can install NodeJs 
+You need `NodeJs` 10 or later to run this tool. You can install NodeJs
 
-- On Linux
+-   On Linux
+
 ```bash
 sudo su
 apt-get install nodejs
 ```
+
 > [!TIP]
 > Although there is no need to install NodeJs on Kali Linux, as its packages are already present in Kali Linux.
 
-- On Termux
+-   On Termux
 
 ```bash
 pkg install nodejs-lts
 ```
-## Installation 
+
+## Installation
 
 ### Global
 
 ```bash
 npm install -g -s httpfy
 ```
+
 > [!NOTE]
 > You may need sudo permission in Linux
 
@@ -83,5 +88,5 @@ npm remove infoooze -g
 ## Usage
 
 ```bash
-httpfy -f <filename containing urls> 
+httpfy -f <filename containing urls>
 ```
