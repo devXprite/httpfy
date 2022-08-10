@@ -75,7 +75,7 @@ const sendRequest = async (url, method) => new Promise(
       .catch((error) => {
         if (Failed || FailCode) {
           const FailedCode = (FailCode) ? (error.code ? `[${error.code}]` : '') : '';
-          console.log(`${url} ${chalk.gray('[fail]')} ${chalk.gray(FailedCode)}`);
+          console.log(`${chalk.yellow('⚠')} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
         }
       }).then((_) => setTimeout(resolve, Interval));
   },

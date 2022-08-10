@@ -57,7 +57,7 @@ const praseRequestPath = (path) => (!path.startsWith('/') ? `/${opt.requestPath}
  */
 const httpfyConfig = {
   file: opt.file,
-  StatusCode: opt.StatusCode ?? true,
+  StatusCode: opt.StatusCode ?? false,
   ContentLength: opt.ContentLength ?? false,
   ContentType: opt.ContentType ?? false,
   ResponseTime: opt.ResponseTime ?? false,

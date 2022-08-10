@@ -14,7 +14,7 @@ program
   .requiredOption('-f, --file <path>', 'Input file containing list of URLs');
 
 program
-  .option('-sc, -status-code', 'display response status-code', true)
+  .option('-sc, -status-code', 'display response status-code')
   .option('-cl, -content-length', 'display response content-length')
   .option('-ct, -content-type', 'display response content-type')
   .option('-rt, -response-time', 'display response time')

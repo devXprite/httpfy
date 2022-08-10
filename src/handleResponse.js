@@ -111,7 +111,9 @@ const handleResponse = (response) => {
    * Resturn result for print in console
    * @returns {string}
    */
-  const result = () => `${url} ${coloredStatus(status)}`
+  const result = () => `${(status >= 200 && status <= 300) ? chalk.greenBright.bold('✔') : chalk.redBright.bold('✖')} `
+    + `${url} `
+    + `${httpfyConfig.StatusCode ? ` ${coloredStatus(status)}` : ''}`
     + `${httpfyConfig.Method ? chalk.hex('#FFA500')(` [${method.toUpperCase()}]`) : ''}`
     + `${httpfyConfig.ContentLength ? chalk.cyan(` [${contentLength}]`) : ''}`
     + `${httpfyConfig.Title ? chalk.hex('#f4a460')(` [${title}]`) : ''}`
