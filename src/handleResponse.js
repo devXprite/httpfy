@@ -80,6 +80,14 @@ const getWordCount = (data) => {
 };
 
 /**
+ * A function to return Response lines Count
+ *
+ * @param {string} data Axios Response Data
+ * @returns {string} lines count
+ */
+const getLineCount = (data) => `${data.split(/\r\n|\r|\n/).length} lines`;
+
+/**
  * A function to handle Axios response
  *
  * @param {string} response Axios Response
@@ -109,6 +117,9 @@ const handleResponse = (response) => {
     /** @type {string} */
     const wordCount = httpfyConfig.WordCount ? getWordCount(data) : "";
 
+    /** @type {string} */
+    const lineCount = httpfyConfig.LineCount ? getLineCount(data) : "";
+
     /**
      * Resturn result for print in console
      * @returns {string}
@@ -121,7 +132,7 @@ const handleResponse = (response) => {
         + `${httpfyConfig.Title ? chalk.hex("#f4a460")(` [${title}]`) : ""}`
         + `${httpfyConfig.ContentType ? chalk.yellow(` [${contentType}]`) : ""}`
         + `${httpfyConfig.ResponseTime ? chalk.hex("#6495ed")(` [${responseTime}]`) : ""}`
-        + `${httpfyConfig.LineCount ? chalk.magenta(` [${"0 lines"}]`) : ""}`
+        + `${httpfyConfig.LineCount ? chalk.magenta(` [${lineCount}]`) : ""}`
         + `${httpfyConfig.WordCount ? chalk.hex("#8fbc8f")(` [${wordCount}]`) : ""}`
         + `${httpfyConfig.WebServe ? chalk.hex("#e002e0")(` [${server}]`) : ""}`;
 

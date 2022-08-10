@@ -7,8 +7,10 @@ const { default: axios } = require("axios");
 const Bluebird = require("bluebird");
 const chalk = require("chalk");
 const handleResponse = require("./handleResponse");
-const { readFile, progresBar, print } = require("./helper");
 const httpfyConfig = require("./httpfyConfig");
+const {
+    readFile, progresBar, print, logSymbols,
+} = require("./helper");
 
 const {
     RequestTimeout,
@@ -65,7 +67,7 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
     instance(url, {
         beforeRedirect: (options) => {
             if (RedirectLocation && options.protocol.includes("http")) {
-                print(`${chalk.blueBright("ℹ")} ${url} ${chalk.cyanBright("-->")} ${options.href}`);
+                print(`${logSymbols.info} ${url} ${chalk.cyanBright("-->")} ${options.href}`);
             }
         },
         method,
@@ -76,7 +78,7 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
         .catch((error) => {
             if (Failed || FailCode) {
                 const FailedCode = FailCode ? (error.code ? `[${error.code}]` : "") : "";
-                print(`${chalk.yellow("⚠")} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
+                print(`${logSymbols.warning} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
             }
         })
         .then((_) => {
@@ -94,18 +96,18 @@ const main = async () => {
     const lines = await readFile(file);
 
     /**
-     * Filter blank and Non URLs Lines
+     * Filter blank & invalid lines
      * @type {Array<string>}
      */
-    const URLs = lines.filter((line) => line.includes("."));
+    const Domains = lines.filter((line) => line.includes("."));
 
-    progresBar.start(RequestMethods === "ALL" ? URLs.length * httpfyConfig.RequestMethods.length : URLs.length);
+    progresBar.start(RequestMethods === "ALL" ? Domains.length * SupportedMetods.length : Domains.length);
 
     if (RequestMethods === "ALL") {
         await Bluebird.map(
-            URLs,
-            (line) => new Promise((resolve) => {
-                const url = line + RequestPath + RequestParam;
+            Domains,
+            (domain) => new Promise((resolve) => {
+                const url = domain + RequestPath + RequestParam;
 
                 Bluebird.map(
                     SupportedMetods,
@@ -116,7 +118,9 @@ const main = async () => {
                         });
                     }),
                     { concurrency: Threads },
-                ).then((_) => resolve());
+                ).then((_) => {
+                    resolve();
+                });
             }),
             { concurrency: Threads },
         ).then((_) => {
@@ -126,9 +130,9 @@ const main = async () => {
     }
 
     await Bluebird.map(
-        URLs,
-        (line) => new Promise((resolve) => {
-            const url = line + RequestPath + RequestParam;
+        Domains,
+        (domain) => new Promise((resolve) => {
+            const url = domain + RequestPath + RequestParam;
             sendRequest(url, RequestMethods).then(() => {
                 resolve();
                 progresBar.increment();

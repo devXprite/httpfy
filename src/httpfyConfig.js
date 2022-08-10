@@ -78,50 +78,14 @@ const httpfyConfig = {
     RequestMethods: (opt.requestMethods || "GET").toUpperCase(),
     RequestParam: opt.requestParam ? praseRequestParameter(opt.requestParam) : "",
     RequestPath: opt.requestPath ? praseRequestPath(opt.requestPath) : "/",
-    maxRedirect: opt.followRedirect ?? false ? Number(opt.maxRedirect || 1) : 0,
-    MatchLength: opt.MatchLength
-        ? new RegExp(
-            opt.MatchLength.split(",")
-                .map((e) => `^${e}$`)
-                .join("|"),
-        )
-        : false,
-    MatchCode: opt.MatchCode
-        ? new RegExp(
-            opt.MatchCode.split(",")
-                .map((e) => `^${e}$`)
-                .join("|"),
-        )
-        : false,
+    maxRedirect: opt.followRedirect ?? false ? Number(opt.maxRedirect || 5) : 0,
+    MatchLength: opt.MatchLength ? new RegExp(opt.MatchLength.split(",").map((e) => `^${e}$`).join("|")) : false,
+    MatchCode: opt.MatchCode ? new RegExp(opt.MatchCode.split(",").map((e) => `^${e}$`).join("|")) : false,
     MatchString: opt.MatchString ? new RegExp(opt.MatchString.split(",").join("|")) : false,
-    MatchLineCount: opt.MatchLineCount
-        ? new RegExp(
-            opt.MatchLineCount.split(",")
-                .map((e) => `^${e}$`)
-                .join("|"),
-        )
-        : false,
-    FilterLength: opt.FilterLength
-        ? new RegExp(
-            opt.FilterLength.split(",")
-                .map((e) => `^${e}$`)
-                .join("|"),
-        )
-        : false,
-    FilterCode: opt.FilterCode
-        ? new RegExp(
-            opt.FilterCode.split(",")
-                .map((e) => `^${e}$`)
-                .join("|"),
-        )
-        : false,
-    FilterLineCount: opt.FilterLineCount
-        ? new RegExp(
-            opt.FilterLineCount.split(",")
-                .map((e) => `^${e}$`)
-                .join("|"),
-        )
-        : false,
+    MatchLineCount: opt.MatchLineCount ? new RegExp(opt.MatchLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterLength: opt.FilterLength ? new RegExp(opt.FilterLength.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterCode: opt.FilterCode ? new RegExp(opt.FilterCode.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterLineCount: opt.FilterLineCount ? new RegExp(opt.FilterLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
     anyMatch: Boolean(opt.MatchCode || opt.MatchLength || opt.MatchLineCount || opt.MatchString),
     anyFilter: Boolean(opt.FilterCode || opt.FilterLength || opt.FilterLineCount),
     SupportedMetods: ["GET", "DELETE", "HEAD", "OPTIONS", "POST", "PUT", "PATCH"],
