@@ -6,6 +6,7 @@
 const chalk = require('chalk');
 const httpfyConfig = require('./httpfyConfig');
 const isMatch = require('./match');
+const {print} = require("../src/progressBar")
 
 /**
  * A Function to return website title from response data
@@ -111,7 +112,7 @@ const handleResponse = (response) => {
    * Resturn result for print in console
    * @returns {string}
    */
-  const result = () => `${(status >= 200 && status <= 300) ? chalk.greenBright.bold('✔') : chalk.redBright.bold('✖')} `
+  const result = () => `${(status >= 200 && status <= 400) ? chalk.greenBright.bold('✔') : chalk.redBright.bold('✖')} `
     + `${url} `
     + `${httpfyConfig.StatusCode ? ` ${coloredStatus(status)}` : ''}`
     + `${httpfyConfig.Method ? chalk.hex('#FFA500')(` [${method.toUpperCase()}]`) : ''}`
@@ -124,7 +125,7 @@ const handleResponse = (response) => {
     + `${httpfyConfig.WebServe ? chalk.hex('#e002e0')(` [${server}]`) : ''}`;
 
   if (isMatch(status, contentLength, data)) {
-    console.log(result());
+    print(result());
   }
 };
 

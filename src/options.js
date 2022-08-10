@@ -21,6 +21,7 @@ program
   .option('-lc, -line-count', 'display response body line count')
   .option('-wc, -word-count', 'display response body word count')
   .option('-server, -web-serve', 'display web server name')
+  .option('-rl, -redirect-location', 'display redirect location')
   .option('-m, -method', 'display http request method')
 
   .option('-fl, -failed', 'display failed requests')
@@ -28,7 +29,7 @@ program
   .option('-ttl, -title', 'display page title');
 
 program
-  .option('-fr, --follow-redirect', 'is follow redirects')
+  .option('-fr, --follow-redirect', 'is follow redirects',true)
   .option('-mr, --max-redirect <number>', 'maximum redirects to follow')
   .option('-t, --threads <number>', 'maximum cocurrent requests send', 100)
   .option('-i, --interval <number>', 'interval between each thread')

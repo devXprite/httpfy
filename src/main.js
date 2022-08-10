@@ -9,6 +9,8 @@ const chalk = require('chalk');
 const handleResponse = require('./handleResponse');
 const { readFile } = require('./helper');
 const httpfyConfig = require('./httpfyConfig');
+const {progresBar,print} = require("../src/progressBar")
+
 
 const {
   RequestTimeout,
@@ -23,8 +25,10 @@ const {
   Interval,
   followRedirect,
   UserAgent,
+  RedirectLocation,
   Cookie,
 } = httpfyConfig;
+
 
 /**
  * Create Axios instance
@@ -63,8 +67,8 @@ const sendRequest = async (url, method) => new Promise(
   (resolve) => {
     instance(url, {
       beforeRedirect: (options) => {
-        if (followRedirect && options.protocol.includes('http')) {
-          console.log(`${url} ${chalk.cyanBright('-->')} ${options.href} ${chalk.magenta('[REDIRECT]')}`);
+        if (RedirectLocation && options.protocol.includes('http')) {
+          print(`${chalk.blueBright('ℹ')} ${url} ${chalk.cyanBright('-->')} ${options.href}`);
         }
       },
       method,
@@ -75,9 +79,11 @@ const sendRequest = async (url, method) => new Promise(
       .catch((error) => {
         if (Failed || FailCode) {
           const FailedCode = (FailCode) ? (error.code ? `[${error.code}]` : '') : '';
-          console.log(`${chalk.yellow('⚠')} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
+          print(`${chalk.yellow('⚠')} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
         }
-      }).then((_) => setTimeout(resolve, Interval));
+      }).then((_) => {
+        setTimeout(resolve, Interval)
+      });
   },
 );
 
@@ -90,24 +96,29 @@ const main = async () => {
   /** @type {Array<string>} */
   const lines = await readFile(file);
 
+  progresBar.start( (RequestMethods === 'ALL') ? lines.length * httpfyConfig.RequestMethods.length: lines.length)
+
   if (RequestMethods === 'ALL') {
     await Bluebird.map(lines, (line) => new Promise((resolve) => {
       const url = line + RequestPath + RequestParam;
 
       Bluebird.map(SupportedMetods, (method) => new Promise((resolveInner) => {
-        sendRequest(url, method).then((_) => resolveInner());
+        sendRequest(url, method).then((_) => {resolveInner();progresBar.increment()});
       }), { concurrency: Threads }).then((_) => resolve());
-    }), { concurrency: Threads });
-
+    }), { concurrency: Threads }).then((_) => {
+    progresBar.stop()
+  })
     return;
   }
 
   await Bluebird.map(lines, (line) => new Promise((resolve) => {
     const url = line + RequestPath + RequestParam;
-    sendRequest(url, RequestMethods).then(() => { resolve(); });
-  }), { concurrency: Threads });
+    sendRequest(url, RequestMethods).then(() => { resolve();progresBar.increment() });
+  }), { concurrency: Threads }).then((_) => {
+    progresBar.stop()
+  });
 
-  console.log('Done');
+  print('Done');
 };
 
 module.exports = main;
