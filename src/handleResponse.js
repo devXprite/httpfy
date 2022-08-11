@@ -137,7 +137,7 @@ const handleResponse = (response) => {
         + `${httpfyConfig.WebServe ? chalk.hex("#e002e0")(` [${server}]`) : ""}`;
 
     const noColorResult = () => `${status >= 200 && status < 400 ? "√" : "x"} `
-    + `${url} `
+        + `${url} `
         + `${httpfyConfig.StatusCode ? ` ${status}` : ""}`
         + `${httpfyConfig.Method ? ` [${method.toUpperCase()}]` : ""}`
         + `${httpfyConfig.ContentLength ? ` [${contentLength}]` : ""}`

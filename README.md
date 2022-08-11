@@ -15,7 +15,6 @@
     <img alt="NPM" src="https://img.shields.io/npm/l/infoooze">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/devxprite/infoooze">
     <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/devxprite/infoooze">
-    <img alt="GitHub forks" src="https://img.shields.io/github/forks/devxprite/infoooze">
     <br>
     <img alt="npm" src="https://img.shields.io/npm/dw/infoooze">
     <img alt="Libraries.io SourceRank" src="https://img.shields.io/librariesio/sourcerank/npm/infoooze">
