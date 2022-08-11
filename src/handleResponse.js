@@ -124,7 +124,7 @@ const handleResponse = (response) => {
      * Resturn result for print in console
      * @returns {string}
      */
-    const result = () => `${status >= 200 && status < 400 ? logSymbols.success : logSymbols.error} `
+    const coloredResult = () => `${status >= 200 && status < 400 ? logSymbols.success : logSymbols.error} `
         + `${url} `
         + `${httpfyConfig.StatusCode ? ` ${coloredStatus(status)}` : ""}`
         + `${httpfyConfig.Method ? chalk.hex("#FFA500")(` [${method.toUpperCase()}]`) : ""}`
@@ -136,8 +136,24 @@ const handleResponse = (response) => {
         + `${httpfyConfig.WordCount ? chalk.hex("#8fbc8f")(` [${wordCount}]`) : ""}`
         + `${httpfyConfig.WebServe ? chalk.hex("#e002e0")(` [${server}]`) : ""}`;
 
+    const noColorResult = () => `${status >= 200 && status < 400 ? "√" : "x"} `
+    + `${url} `
+        + `${httpfyConfig.StatusCode ? ` ${status}` : ""}`
+        + `${httpfyConfig.Method ? ` [${method.toUpperCase()}]` : ""}`
+        + `${httpfyConfig.ContentLength ? ` [${contentLength}]` : ""}`
+        + `${httpfyConfig.Title ? ` [${title}]` : ""}`
+        + `${httpfyConfig.ContentType ? ` [${contentType}]` : ""}`
+        + `${httpfyConfig.ResponseTime ? ` [${responseTime}]` : ""}`
+        + `${httpfyConfig.LineCount ? ` [${lineCount}]` : ""}`
+        + `${httpfyConfig.WordCount ? ` [${wordCount}]` : ""}`
+        + `${httpfyConfig.WebServe ? ` [${server}]` : ""}`;
+
     if (isMatch(status, contentLength, data)) {
-        print(result());
+        if (httpfyConfig.Color) {
+            print(coloredResult());
+            return;
+        }
+        print(noColorResult());
     }
 };
 

@@ -29,6 +29,7 @@ const praseRequestPath = (path) => (!path.startsWith("/") ? `/${opt.requestPath}
  * @property {boolean} WebServe
  * @property {boolean} Title
  * @property {boolean} Method
+ * @property {boolean} Color
  * @property {boolean} Failed
  * @property {boolean} FailCode
  * @property {boolean} followRedirect
@@ -57,38 +58,41 @@ const praseRequestPath = (path) => (!path.startsWith("/") ? `/${opt.requestPath}
  */
 const httpfyConfig = {
     file: opt.file,
-    StatusCode: opt.StatusCode ?? false,
-    ContentLength: opt.ContentLength ?? false,
-    ContentType: opt.ContentType ?? false,
-    ResponseTime: opt.ResponseTime ?? false,
-    LineCount: opt.LineCount ?? false,
-    WordCount: opt.WordCount ?? false,
-    WebServe: opt.WebServe ?? false,
-    Title: opt.Title ?? false,
-    Method: opt.Method ?? false,
-    Failed: opt.Failed ?? false,
-    FailCode: opt.FailCode ?? false,
-    RedirectLocation: opt.RedirectLocation ?? false,
+    StatusCode: opt.statusCode ?? false,
+    ContentLength: opt.contentLength ?? false,
+    ContentType: opt.contentType ?? false,
+    ResponseTime: opt.responseTime ?? false,
+    LineCount: opt.lineCount ?? false,
+    WordCount: opt.wordCount ?? false,
+    WebServe: opt.webServe ?? false,
+    Title: opt.title ?? false,
+    Method: opt.method ?? false,
+    Color: (opt.color) ?? true,
+    Failed: opt.failed ?? false,
+    FailCode: opt.failCode ?? false,
+    RedirectLocation: opt.redirectLocation ?? false,
+    followRedirect: (opt.redirect) ?? true,
     Threads: Number(opt.threads) || 100,
     RequestTimeout: opt.timeout ? opt.timeout * 1000 : 30 * 60 * 1000,
-    followRedirect: opt.followRedirect ?? false,
     Interval: Number(opt.interval) * 1000 || 0,
     UserAgent: opt.userAgent || sample(userAgents),
     Cookie: opt.cookie || "",
     RequestMethods: (opt.requestMethods || "GET").toUpperCase(),
     RequestParam: opt.requestParam ? praseRequestParameter(opt.requestParam) : "",
     RequestPath: opt.requestPath ? praseRequestPath(opt.requestPath) : "/",
-    maxRedirect: opt.followRedirect ?? false ? Number(opt.maxRedirect || 5) : 0,
-    MatchLength: opt.MatchLength ? new RegExp(opt.MatchLength.split(",").map((e) => `^${e}$`).join("|")) : false,
-    MatchCode: opt.MatchCode ? new RegExp(opt.MatchCode.split(",").map((e) => `^${e}$`).join("|")) : false,
-    MatchString: opt.MatchString ? new RegExp(opt.MatchString.split(",").join("|")) : false,
-    MatchLineCount: opt.MatchLineCount ? new RegExp(opt.MatchLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
-    FilterLength: opt.FilterLength ? new RegExp(opt.FilterLength.split(",").map((e) => `^${e}$`).join("|")) : false,
-    FilterCode: opt.FilterCode ? new RegExp(opt.FilterCode.split(",").map((e) => `^${e}$`).join("|")) : false,
-    FilterLineCount: opt.FilterLineCount ? new RegExp(opt.FilterLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
-    anyMatch: Boolean(opt.MatchCode || opt.MatchLength || opt.MatchLineCount || opt.MatchString),
-    anyFilter: Boolean(opt.FilterCode || opt.FilterLength || opt.FilterLineCount),
+    maxRedirect: opt.redirect ?? false ? Number(opt.maxRedirect || 5) : 0,
+    MatchLength: opt.matchLength ? new RegExp(opt.matchLength.split(",").map((e) => `^${e}$`).join("|")) : false,
+    MatchCode: opt.matchCode ? new RegExp(opt.matchCode.split(",").map((e) => `^${e}$`).join("|")) : false,
+    MatchString: opt.matchString ? new RegExp(opt.matchString.split(",").join("|")) : false,
+    MatchLineCount: opt.matchLineCount ? new RegExp(opt.matchLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterLength: opt.filterLength ? new RegExp(opt.filterLength.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterCode: opt.filterCode ? new RegExp(opt.filterCode.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterLineCount: opt.filterLineCount ? new RegExp(opt.filterLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
+    anyMatch: Boolean(opt.matchCode || opt.matchLength || opt.matchLineCount || opt.matchString),
+    anyFilter: Boolean(opt.filterCode || opt.filterLength || opt.filterLineCount),
     SupportedMetods: ["GET", "DELETE", "HEAD", "OPTIONS", "POST", "PUT", "PATCH"],
 };
+
+console.log(httpfyConfig);
 
 module.exports = httpfyConfig;

@@ -70,7 +70,7 @@ const fallbackSymbols = {
     info: chalk.bold.blue("i"),
     success: chalk.bold.green("√"),
     warning: chalk.yellow("‼"),
-    error: chalk.bold.red("×"),
+    error: chalk.bold.red("x"),
 };
 
 const logSymbols = isUnicodeSupported() ? mainSymbols : fallbackSymbols;
@@ -81,7 +81,7 @@ const logSymbols = isUnicodeSupported() ? mainSymbols : fallbackSymbols;
  */
 const multiBar = new cliProgress.MultiBar(
     {
-        format: `|${"{bar}"}| {percentage}% | {value}/{total} Requests | ETA: {eta_formatted}`,
+        format: `{percentage}% |${"{bar}"}| {value}/{total} Requests | ETA: {eta_formatted}`,
         barCompleteChar: "\u2588",
         barIncompleteChar: "\u2591",
         stopOnComplete: true,
