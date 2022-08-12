@@ -43,8 +43,8 @@ program
     .option("-ms, --match-string <string> ", "match response with specified strings");
 
 program
-    .option("-o , --output-file <path>", "save results in a single file")
-    .option("-of, --output-folder <path>", "save results multiple files accoring to status code");
+    .option("-o , --output-file <string>", "save results in a single file")
+    .option("-of, --output-folder <string>", "save results in multiple files accoring status code");
 
 program.parse();
 

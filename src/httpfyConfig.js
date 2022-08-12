@@ -1,6 +1,11 @@
+/**
+ * HttpFy Config Module
+ * @module httpfyConfig
+ */
+
 const { sample } = require("lodash");
 
-const opt = require("./options");
+const args = require("./args");
 const userAgents = require("../db/useragents.json");
 
 /**
@@ -13,7 +18,7 @@ const praseRequestParameter = (value) => `?${value.replace(/,/g, "&")}`;
  * @param {string} path
  * @returns {string} path
  */
-const praseRequestPath = (path) => (!path.startsWith("/") ? `/${opt.requestPath}` : path);
+const praseRequestPath = (path) => (!path.startsWith("/") ? `/${args.requestPath}` : path);
 
 /**
  * Httpfy Config Object
@@ -57,39 +62,39 @@ const praseRequestPath = (path) => (!path.startsWith("/") ? `/${opt.requestPath}
  * @type {httpfyConfig}
  */
 const httpfyConfig = {
-    file: opt.file,
-    StatusCode: opt.statusCode ?? false,
-    ContentLength: opt.contentLength ?? false,
-    ContentType: opt.contentType ?? false,
-    ResponseTime: opt.responseTime ?? false,
-    LineCount: opt.lineCount ?? false,
-    WordCount: opt.wordCount ?? false,
-    WebServe: opt.webServe ?? false,
-    Title: opt.title ?? false,
-    Method: opt.method ?? false,
-    Color: (opt.color) ?? true,
-    Failed: opt.failed ?? false,
-    FailCode: opt.failCode ?? false,
-    RedirectLocation: opt.redirectLocation ?? false,
-    followRedirect: (opt.redirect) ?? true,
-    Threads: Number(opt.threads) || 100,
-    RequestTimeout: opt.timeout ? opt.timeout * 1000 : 30 * 60 * 1000,
-    Interval: Number(opt.interval) * 1000 || 0,
-    UserAgent: opt.userAgent || sample(userAgents),
-    Cookie: opt.cookie || "",
-    RequestMethods: (opt.requestMethods || "GET").toUpperCase(),
-    RequestParam: opt.requestParam ? praseRequestParameter(opt.requestParam) : "",
-    RequestPath: opt.requestPath ? praseRequestPath(opt.requestPath) : "/",
-    maxRedirect: opt.redirect ?? false ? Number(opt.maxRedirect || 5) : 0,
-    MatchLength: opt.matchLength ? new RegExp(opt.matchLength.split(",").map((e) => `^${e}$`).join("|")) : false,
-    MatchCode: opt.matchCode ? new RegExp(opt.matchCode.split(",").map((e) => `^${e}$`).join("|")) : false,
-    MatchString: opt.matchString ? new RegExp(opt.matchString.split(",").join("|")) : false,
-    MatchLineCount: opt.matchLineCount ? new RegExp(opt.matchLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
-    FilterLength: opt.filterLength ? new RegExp(opt.filterLength.split(",").map((e) => `^${e}$`).join("|")) : false,
-    FilterCode: opt.filterCode ? new RegExp(opt.filterCode.split(",").map((e) => `^${e}$`).join("|")) : false,
-    FilterLineCount: opt.filterLineCount ? new RegExp(opt.filterLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
-    anyMatch: Boolean(opt.matchCode || opt.matchLength || opt.matchLineCount || opt.matchString),
-    anyFilter: Boolean(opt.filterCode || opt.filterLength || opt.filterLineCount),
+    file: args.file,
+    StatusCode: args.statusCode ?? false,
+    ContentLength: args.contentLength ?? false,
+    ContentType: args.contentType ?? false,
+    ResponseTime: args.responseTime ?? false,
+    LineCount: args.lineCount ?? false,
+    WordCount: args.wordCount ?? false,
+    WebServe: args.webServe ?? false,
+    Title: args.title ?? false,
+    Method: args.method ?? false,
+    Color: (args.color) ?? true,
+    Failed: args.failed ?? false,
+    FailCode: args.failCode ?? false,
+    RedirectLocation: args.redirectLocation ?? false,
+    followRedirect: (args.redirect) ?? true,
+    Threads: Number(args.threads) || 100,
+    RequestTimeout: args.timeout ? args.timeout * 1000 : 30 * 60 * 1000,
+    Interval: Number(args.interval) * 1000 || 0,
+    UserAgent: args.userAgent || sample(userAgents),
+    Cookie: args.cookie || "",
+    RequestMethods: (args.requestMethods || "GET").toUpperCase(),
+    RequestParam: args.requestParam ? praseRequestParameter(args.requestParam) : "",
+    RequestPath: args.requestPath ? praseRequestPath(args.requestPath) : "/",
+    maxRedirect: args.redirect ?? false ? Number(args.maxRedirect || 5) : 0,
+    MatchLength: args.matchLength ? new RegExp(args.matchLength.split(",").map((e) => `^${e}$`).join("|")) : false,
+    MatchCode: args.matchCode ? new RegExp(args.matchCode.split(",").map((e) => `^${e}$`).join("|")) : false,
+    MatchString: args.matchString ? new RegExp(args.matchString.split(",").join("|")) : false,
+    MatchLineCount: args.matchLineCount ? new RegExp(args.matchLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterLength: args.filterLength ? new RegExp(args.filterLength.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterCode: args.filterCode ? new RegExp(args.filterCode.split(",").map((e) => `^${e}$`).join("|")) : false,
+    FilterLineCount: args.filterLineCount ? new RegExp(args.filterLineCount.split(",").map((e) => `^${e}$`).join("|")) : false,
+    anyMatch: Boolean(args.matchCode || args.matchLength || args.matchLineCount || args.matchString),
+    anyFilter: Boolean(args.filterCode || args.filterLength || args.filterLineCount),
     SupportedMetods: ["GET", "DELETE", "HEAD", "OPTIONS", "POST", "PUT", "PATCH"],
 };
 

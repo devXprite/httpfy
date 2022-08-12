@@ -1,3 +1,8 @@
+/**
+ * Helper Functions
+ * @module helper
+ */
+
 /* eslint-disable unicorn/no-process-exit */
 /* eslint-disable no-nested-ternary */
 const fs = require("node:fs");

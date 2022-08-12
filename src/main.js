@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable unicorn/no-array-method-this-argument */
-/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 const { default: axios } = require("axios");
 const Bluebird = require("bluebird");
