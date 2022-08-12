@@ -4,6 +4,7 @@
  */
 
 const chalk = require("chalk");
+const fileWrite = require("file-write");
 const httpfyConfig = require("./httpfyConfig");
 const isMatch = require("./match");
 const { print, logSymbols } = require("./helper");
@@ -149,10 +150,15 @@ const handleResponse = (response) => {
         + `${httpfyConfig.WebServe ? ` [${server}]` : ""}`;
 
     if (isMatch(status, contentLength, data)) {
+        if (httpfyConfig.OutputFile) {
+            fileWrite(httpfyConfig.OutputFile, noColorResult().replace(/^(√|x)/g, ""));
+        }
+
         if (httpfyConfig.Color) {
             print(coloredResult());
             return;
         }
+
         print(noColorResult());
     }
 };

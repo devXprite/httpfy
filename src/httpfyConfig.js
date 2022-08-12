@@ -4,7 +4,9 @@
  */
 
 const { sample } = require("lodash");
+const { existsSync, unlinkSync } = require("node:fs");
 
+const chalk = require("chalk");
 const args = require("./args");
 const userAgents = require("../db/useragents.json");
 
@@ -19,6 +21,21 @@ const praseRequestParameter = (value) => `?${value.replace(/,/g, "&")}`;
  * @returns {string} path
  */
 const praseRequestPath = (path) => (!path.startsWith("/") ? `/${args.requestPath}` : path);
+
+/**
+ * Check if file already Exist
+ *
+ * @param {string} fileDir
+ * @returns {string}
+ */
+const checkFileExist = (fileDir) => {
+    if (existsSync(fileDir)) {
+        console.log(chalk.cyan(`\nFile already exists: ${chalk.magenta(args.outputFile)}`));
+        console.log(chalk.cyan("File will be OverWriten\n"));
+        unlinkSync(fileDir);
+    }
+    return fileDir;
+};
 
 /**
  * Httpfy Config Object
@@ -56,6 +73,7 @@ const praseRequestPath = (path) => (!path.startsWith("/") ? `/${args.requestPath
  * @property {boolean} anyMatch
  * @property {boolean} anyFilter
  * @property {Array<string>} SupportedMetods
+ * @property {(string|boolean)} OutputFile
  */
 
 /**
@@ -96,8 +114,9 @@ const httpfyConfig = {
     anyMatch: Boolean(args.matchCode || args.matchLength || args.matchLineCount || args.matchString),
     anyFilter: Boolean(args.filterCode || args.filterLength || args.filterLineCount),
     SupportedMetods: ["GET", "DELETE", "HEAD", "OPTIONS", "POST", "PUT", "PATCH"],
+    OutputFile: args.outputFile ? checkFileExist(args.outputFile) : false,
 };
 
-console.log(httpfyConfig);
+// console.log(httpfyConfig);
 
 module.exports = httpfyConfig;
