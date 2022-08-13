@@ -77,7 +77,7 @@ const getWordCount = (data) => {
         .replace(/[ ]{2,}/gi, " ")
         .replace(/\n /, "\n");
     const { length } = filterData.split(" ").filter((str) => str !== "");
-    return `${length} words`;
+    return length;
 };
 
 /**
@@ -86,7 +86,7 @@ const getWordCount = (data) => {
  * @param {string} data Axios Response Data
  * @returns {string} lines count
  */
-const getLineCount = (data) => `${data.split(/\r\n|\r|\n/).length} lines`;
+const getLineCount = (data) => data.split(/\r\n|\r|\n/).length || 0;
 
 /**
  * A function to handle Axios response
@@ -126,15 +126,15 @@ const handleResponse = (response) => {
      * @returns {string}
      */
     const coloredResult = () => `${status >= 200 && status < 400 ? logSymbols.success : logSymbols.error} `
-        + `${url} `
+        + `${url}`
         + `${httpfyConfig.StatusCode ? ` ${coloredStatus(status)}` : ""}`
         + `${httpfyConfig.Method ? chalk.hex("#FFA500")(` [${method.toUpperCase()}]`) : ""}`
         + `${httpfyConfig.ContentLength ? chalk.cyan(` [${contentLength}]`) : ""}`
         + `${httpfyConfig.Title ? chalk.hex("#f4a460")(` [${title}]`) : ""}`
         + `${httpfyConfig.ContentType ? chalk.yellow(` [${contentType}]`) : ""}`
         + `${httpfyConfig.ResponseTime ? chalk.hex("#6495ed")(` [${responseTime}]`) : ""}`
-        + `${httpfyConfig.LineCount ? chalk.magenta(` [${lineCount}]`) : ""}`
-        + `${httpfyConfig.WordCount ? chalk.hex("#8fbc8f")(` [${wordCount}]`) : ""}`
+        + `${httpfyConfig.LineCount ? chalk.magenta(` [${lineCount} lines]`) : ""}`
+        + `${httpfyConfig.WordCount ? chalk.hex("#8fbc8f")(` [${wordCount} words]`) : ""}`
         + `${httpfyConfig.WebServe ? chalk.hex("#e002e0")(` [${server}]`) : ""}`;
 
     const noColorResult = () => `${status >= 200 && status < 400 ? "√" : "x"} `
@@ -145,8 +145,8 @@ const handleResponse = (response) => {
         + `${httpfyConfig.Title ? ` [${title}]` : ""}`
         + `${httpfyConfig.ContentType ? ` [${contentType}]` : ""}`
         + `${httpfyConfig.ResponseTime ? ` [${responseTime}]` : ""}`
-        + `${httpfyConfig.LineCount ? ` [${lineCount}]` : ""}`
-        + `${httpfyConfig.WordCount ? ` [${wordCount}]` : ""}`
+        + `${httpfyConfig.LineCount ? ` [${lineCount}] lines` : ""}`
+        + `${httpfyConfig.WordCount ? ` [${wordCount}] words` : ""}`
         + `${httpfyConfig.WebServe ? ` [${server}]` : ""}`;
 
     if (isMatch(status, contentLength, data)) {

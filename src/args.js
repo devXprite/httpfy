@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable unicorn/prevent-abbreviations */
 /* eslint-disable max-len */
 const { Command } = require("commander");
@@ -21,8 +23,7 @@ program
     .option("-m, --method", "display http request method")
     .option("-nc, --no-color", "disable colors in cli output")
     .option("-ttl, --title", "display page title")
-    .option("-fl, --failed", "display failed requests")
-    .option("-fc, --fail-code", "display failed request's with failed code");
+    .option("-fl, --failed", "display failed request's");
 
 program
     .option("-nr, --no-redirect", "don't follow redirects")

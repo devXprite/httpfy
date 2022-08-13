@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable unicorn/no-array-method-this-argument */
@@ -26,7 +28,7 @@ const {
     followRedirect,
     UserAgent,
     RedirectLocation,
-    Cookie,
+    Cookie, Color,
 } = httpfyConfig;
 
 /**
@@ -75,9 +77,13 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
             handleResponse(response);
         })
         .catch((error) => {
-            if (Failed || FailCode) {
-                const FailedCode = FailCode ? (error.code ? `[${error.code}]` : "") : "";
-                print(`${logSymbols.warning} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
+            if (Failed) {
+                const FailedCode = (error.code ? `[${error.code}]` : "");
+                if (Color) {
+                    print(`${logSymbols.warning} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
+                } else {
+                    print(`! ${url} ${FailedCode}`);
+                }
             }
         })
         .then((_) => {

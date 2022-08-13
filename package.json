@@ -1,8 +1,9 @@
 {
     "name": "httpfy",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "description": "A fast and multi-purpose HTTP toolkit",
     "main": "index.js",
+    "type": "commonjs",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
@@ -44,6 +45,10 @@
         "lodash": "^4.17.21",
         "log-symbols": "^5.1.0"
     },
+    "bin": {
+        "httpfy": "./index.js"
+    },
+    "preferGlobal": true,
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"

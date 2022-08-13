@@ -92,7 +92,7 @@ const multiBar = new cliProgress.MultiBar(
         stopOnComplete: true,
         hideCursor: true,
         clearOnComplete: true,
-        barsize: 50,
+        barsize: 40,
         forceRedraw: true,
         barGlue: "",
     },

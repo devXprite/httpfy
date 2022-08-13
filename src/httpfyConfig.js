@@ -53,7 +53,6 @@ const checkFileExist = (fileDir) => {
  * @property {boolean} Method
  * @property {boolean} Color
  * @property {boolean} Failed
- * @property {boolean} FailCode
  * @property {boolean} followRedirect
  * @property {number} Threads
  * @property {number} RequestTimeout
@@ -92,7 +91,6 @@ const httpfyConfig = {
     Method: args.method ?? false,
     Color: (args.color) ?? true,
     Failed: args.failed ?? false,
-    FailCode: args.failCode ?? false,
     RedirectLocation: args.redirectLocation ?? false,
     followRedirect: (args.redirect) ?? true,
     Threads: Number(args.threads) || 100,
