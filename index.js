@@ -1,5 +1,3 @@
 #!/usr/bin/env node
 
-const main = require("./src/main");
-
-main();
+require("./src/main")();
