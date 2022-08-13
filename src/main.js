@@ -28,7 +28,8 @@ const {
     followRedirect,
     UserAgent,
     RedirectLocation,
-    Cookie, Color,
+    Cookie,
+    Color,
 } = httpfyConfig;
 
 /**
@@ -78,7 +79,7 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
         })
         .catch((error) => {
             if (Failed) {
-                const FailedCode = (error.code ? `[${error.code}]` : "");
+                const FailedCode = error.code ? `[${error.code}]` : "";
                 if (Color) {
                     print(`${logSymbols.warning} ${chalk.gray(url)} ${chalk.gray(FailedCode)}`);
                 } else {

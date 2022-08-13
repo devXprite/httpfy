@@ -80,19 +80,19 @@ const checkFileExist = (fileDir) => {
  */
 const httpfyConfig = {
     file: args.file,
-    StatusCode: args.statusCode ?? false,
-    ContentLength: args.contentLength ?? false,
-    ContentType: args.contentType ?? false,
-    ResponseTime: args.responseTime ?? false,
-    LineCount: args.lineCount ?? false,
-    WordCount: args.wordCount ?? false,
-    WebServe: args.webServe ?? false,
-    Title: args.title ?? false,
-    Method: args.method ?? false,
-    Color: (args.color) ?? true,
-    Failed: args.failed ?? false,
-    RedirectLocation: args.redirectLocation ?? false,
-    followRedirect: (args.redirect) ?? true,
+    StatusCode: (args.statusCode !== null) && args.statusCode !== undefined ? args.statusCode : false,
+    ContentLength: (args.contentLength !== null) && args.contentLength !== undefined ? args.contentLength : false,
+    ContentType: (args.contentType !== null) && args.contentType !== undefined ? args.contentType : false,
+    ResponseTime: (args.responseTime !== null) && args.responseTime !== undefined ? args.responseTime : false,
+    LineCount: (args.lineCount !== null) && args.lineCount !== undefined ? args.lineCount : false,
+    WordCount: (args.wordCount !== null) && args.wordCount !== undefined ? args.wordCount : false,
+    WebServe: (args.webServe !== null) && args.webServe !== undefined ? args.webServe : false,
+    Title: (args.title !== null) && args.title !== undefined ? args.title : false,
+    Method: (args.method !== null) && args.method !== undefined ? args.method : false,
+    Color: (args.color !== null) && args.color !== undefined ? args.color : false,
+    Failed: (args.failed !== null) && args.failed !== undefined ? args.failed : false,
+    RedirectLocation: (args.redirectLocation !== null) && args.redirectLocation !== undefined ? args.redirectLocation : false,
+    followRedirect: (args.redirect !== null) && args.redirect !== undefined ? args.redirect : false,
     Threads: Number(args.threads) || 100,
     RequestTimeout: args.timeout ? args.timeout * 1000 : 30 * 60 * 1000,
     Interval: Number(args.interval) * 1000 || 0,
@@ -101,7 +101,7 @@ const httpfyConfig = {
     RequestMethods: (args.requestMethods || "GET").toUpperCase(),
     RequestParam: args.requestParam ? praseRequestParameter(args.requestParam) : "",
     RequestPath: args.requestPath ? praseRequestPath(args.requestPath) : "/",
-    maxRedirect: args.redirect ?? false ? Number(args.maxRedirect || 5) : 0,
+    maxRedirect: ((args.redirect !== null) && args.redirect !== undefined ? args.redirect : false) ? Number(args.maxRedirect || 5) : 0,
     MatchLength: args.matchLength ? new RegExp(args.matchLength.split(",").map((e) => `^${e}$`).join("|")) : false,
     MatchCode: args.matchCode ? new RegExp(args.matchCode.split(",").map((e) => `^${e}$`).join("|")) : false,
     MatchString: args.matchString ? new RegExp(args.matchString.split(",").join("|")) : false,
@@ -115,6 +115,6 @@ const httpfyConfig = {
     OutputFile: args.outputFile ? checkFileExist(args.outputFile) : false,
 };
 
-// console.log(httpfyConfig);
+console.log(httpfyConfig);
 
 module.exports = httpfyConfig;

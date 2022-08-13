@@ -17,6 +17,7 @@ module.exports = {
         "unicorn/prevent-abbreviations": "off",
         "consistent-return": "off",
         "unicorn/better-regex": "off",
+        "unicorn/prefer-node-protocol": "off",
         "max-len": "off",
         quotes: [2, "double"],
         indent: ["error", 4],
