@@ -1,6 +1,6 @@
 {
     "name": "httpfy",
-    "version": "0.0.0",
+    "version": "0.0.1-0",
     "description": "A fast and multi-purpose HTTP toolkit",
     "main": "index.js",
     "type": "commonjs",
