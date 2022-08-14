@@ -30,8 +30,13 @@ const praseRequestPath = (path) => (!path.startsWith("/") ? `/${args.requestPath
  */
 const checkFileExist = (fileDir) => {
     if (existsSync(fileDir)) {
-        console.log(chalk.cyan(`\nFile already exists: ${chalk.magenta(args.outputFile)}`));
-        console.log(chalk.cyan("File will be OverWriten\n"));
+        if (args.color) {
+            console.log(chalk.magenta(`\nFile already exists: ${chalk.cyan(args.outputFile)}`));
+            console.log(chalk.magenta("File will be OverWriten\n"));
+        } else {
+            console.log(`\nFile already exists: ${args.outputFile}`);
+            console.log("File will be OverWriten\n");
+        }
         unlinkSync(fileDir);
     }
     return fileDir;
@@ -115,6 +120,6 @@ const httpfyConfig = {
     OutputFile: args.outputFile ? checkFileExist(args.outputFile) : false,
 };
 
-console.log(httpfyConfig);
+// console.log(httpfyConfig);
 
 module.exports = httpfyConfig;

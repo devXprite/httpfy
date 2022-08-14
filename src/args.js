@@ -4,6 +4,7 @@
 /* eslint-disable max-len */
 const { Command } = require("commander");
 const pkg = require("../package.json");
+const banner = require("./banner");
 
 const program = new Command();
 
@@ -47,8 +48,12 @@ program
     .option("-o , --output-file <string>", "save results in a single file")
     .option("-of, --output-folder <string>", "save results in multiple files accoring status code");
 
+program.action((args) => {
+    console.log(banner(args.color));
+});
+
 program.parse();
 
-console.log(program.opts());
+// console.log(program.opts());
 
 module.exports = program.opts();
