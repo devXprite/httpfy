@@ -18,6 +18,7 @@ module.exports = {
         "consistent-return": "off",
         "unicorn/better-regex": "off",
         "unicorn/prefer-node-protocol": "off",
+        "unicorn/numeric-separators-style": "off",
         "max-len": "off",
         quotes: [2, "double"],
         indent: ["error", 4],

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-unused-vars */
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable unicorn/no-array-method-this-argument */
 /* eslint-disable no-param-reassign */
@@ -17,7 +16,6 @@ const {
     RequestTimeout,
     maxRedirect,
     Failed,
-    FailCode,
     RequestMethods,
     SupportedMetods,
     RequestPath,
@@ -25,7 +23,6 @@ const {
     Threads,
     file,
     Interval,
-    followRedirect,
     UserAgent,
     RedirectLocation,
     Cookie,
@@ -53,7 +50,7 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use((response) => {
     const start = response.config.headers["request-startTime"];
     const end = process.hrtime(start);
-    const milliseconds = Math.round(end[0] * 1000 + end[1] / 1_000_000);
+    const milliseconds = Math.round(end[0] * 1000 + end[1] / 1000000);
     response.headers["request-duration"] = milliseconds;
     return response;
 });
@@ -87,7 +84,7 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
                 }
             }
         })
-        .then((_) => {
+        .then(() => {
             setTimeout(resolve, Interval);
         });
 });
@@ -118,18 +115,18 @@ const main = async () => {
                 Bluebird.map(
                     SupportedMetods,
                     (method) => new Promise((resolveInner) => {
-                        sendRequest(url, method).then((_) => {
+                        sendRequest(url, method).then(() => {
                             resolveInner();
                             progresBar.increment();
                         });
                     }),
                     { concurrency: Threads },
-                ).then((_) => {
+                ).then(() => {
                     resolve();
                 });
             }),
             { concurrency: Threads },
-        ).then((_) => {
+        ).then(() => {
             progresBar.stop();
         });
         return;
@@ -145,7 +142,7 @@ const main = async () => {
             });
         }),
         { concurrency: Threads },
-    ).then((_) => {
+    ).then(() => {
         progresBar.stop();
     });
 
