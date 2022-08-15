@@ -1,9 +1,11 @@
 <div id="top"></div>
 
+> HTTPFY curently in beta so you may see problems. Please open a Issue on GitHub and report them!
+
 <br />
 <div align="center">
   <a href="https://github.com/devxprite/httpfy">
-    <img src="./_includes/httpFy_logo.png" alt="Logo" width="280">
+    <img src="_includes/httpFy_logo.png" alt="Logo" width="280">
   </a>
 
   <p align="center">
@@ -32,25 +34,13 @@
 <!-- GETTING STARTED -->
 
 ## Getting Started
+![HTTPFY Preview](_includes/getting_started.svg)
 
 ### Prerequisites
 
 You need to install Node.js first, then install the tool globally.
-
--   On Linux
-
-```bash
-sudo su
-apt-get install nodejs
-```
-
-> Although there is no need to install NodeJs on Kali Linux, as its packages are already present in Kali Linux.
-
--   On Termux
-
-```bash
-pkg install nodejs-lts
-```
+- NodeJs 10.24.1 or later
+- NPM 6.14.12 or later
 
 ## Installation
 
@@ -68,7 +58,7 @@ npm install -g -s httpfy
 yarn global add httpfy
 ```
 
-### npx
+#### npx
 
 ```bash
 npx httpfy -f <file>
