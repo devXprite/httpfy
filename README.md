@@ -33,11 +33,9 @@
 
 ## Getting Started
 
-
 ### Prerequisites
 
 You need to install Node.js first, then install the tool globally.
-
 
 -   On Linux
 
@@ -59,15 +57,19 @@ pkg install nodejs-lts
 ### Global
 
 #### npm
+
 ```bash
 npm install -g -s httpfy
 ```
+
 #### yarn
+
 ```bash
 yarn global add httpfy
 ```
 
 ### npx
+
 ```bash
 npx httpfy -f <file>
 ```

@@ -6,11 +6,11 @@
 const { default: axios } = require("axios");
 const Bluebird = require("bluebird");
 const chalk = require("chalk");
-const handleResponse = require("./handleResponse");
-const httpfyConfig = require("./httpfyConfig");
+const handleResponse = require("../lib/handleResponse");
+const httpfyConfig = require("../lib/httpfyConfig");
 const {
     readFile, progresBar, print, logSymbols,
-} = require("./helper");
+} = require("../lib/helper");
 
 const {
     RequestTimeout,
@@ -97,7 +97,6 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
 const main = async () => {
     /** @type {Array<string>} */
     const lines = await readFile(file);
-
     /**
      * Filter blank & invalid lines
      * @type {Array<string>}
@@ -149,4 +148,4 @@ const main = async () => {
     print("Done");
 };
 
-module.exports = main;
+main();

@@ -1,12 +1,12 @@
 {
     "name": "httpfy",
     "version": "0.0.1-1",
-    "description": "A fast and multi-purpose HTTP toolkit",
-    "main": "index.js",
+    "description": "A Incredible fast and Powerful HTTP toolkit",
+    "main": "bin/httpfy.js",
     "type": "commonjs",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js",
+        "start": "node bin/httpfy.js",
         "lint": "eslint . --ext .js",
         "lint:fix": "eslint . --ext .js --fix",
         "prettier": "prettier --check .",
@@ -46,7 +46,7 @@
         "log-symbols": "^5.1.0"
     },
     "bin": {
-        "httpfy": "./index.js"
+        "httpfy": "./bin/httpfy.js"
     },
     "preferGlobal": true,
     "config": {
