@@ -27,6 +27,7 @@ const {
     RedirectLocation,
     Cookie,
     Color,
+    RequestProtocol,
 } = httpfyConfig;
 
 /**
@@ -97,17 +98,21 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
 const main = async () => {
     /** @type {Array<string>} */
     const lines = await readFile(file);
+
     /**
      * Filter blank & invalid lines
      * @type {Array<string>}
      */
-    const Domains = lines.filter((line) => line.includes("."));
+    let domains = lines.filter((line) => line.includes("."));
 
-    progresBar.start(RequestMethods === "ALL" ? Domains.length * SupportedMetods.length : Domains.length);
+    domains = domains.flatMap((domain) => RequestProtocol.map((protocol) => `${protocol}://${domain}`));
+
+    // console.log(URLs);
+    progresBar.start(RequestMethods === "ALL" ? domains.length * SupportedMetods.length : domains.length);
 
     if (RequestMethods === "ALL") {
         await Bluebird.map(
-            Domains,
+            domains,
             (domain) => new Promise((resolve) => {
                 const url = domain + RequestPath + RequestParam;
 
@@ -132,7 +137,7 @@ const main = async () => {
     }
 
     await Bluebird.map(
-        Domains,
+        domains,
         (domain) => new Promise((resolve) => {
             const url = domain + RequestPath + RequestParam;
             sendRequest(url, RequestMethods).then(() => {
