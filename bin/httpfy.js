@@ -103,19 +103,18 @@ const main = async () => {
      * Filter blank & invalid lines
      * @type {Array<string>}
      */
-    let domains = lines.filter((line) => line.includes("."));
+    const hostNames = lines.filter((line) => line.includes("."));
 
-    domains = domains.flatMap((domain) => RequestProtocol.map((protocol) => `${protocol}://${domain}`));
-    domains = domains.flatMap((domain) => RequestPath.map((path) => `${domain}/${path}`));
+    let URLs = hostNames.flatMap((host) => RequestProtocol.map((protocol) => `${protocol}://${host}`));
+    URLs = URLs.flatMap((domain) => RequestPath.map((path) => `${domain}/${path}`));
+    URLs = URLs.map((domain) => domain + RequestParam);
 
-    progresBar.start(RequestMethods === "ALL" ? domains.length * SupportedMetods.length : domains.length);
+    progresBar.start(RequestMethods === "ALL" ? URLs.length * SupportedMetods.length : URLs.length);
 
     if (RequestMethods === "ALL") {
         await Bluebird.map(
-            domains,
-            (domain) => new Promise((resolve) => {
-                const url = domain + RequestParam;
-
+            URLs,
+            (url) => new Promise((resolve) => {
                 Bluebird.map(
                     SupportedMetods,
                     (method) => new Promise((resolveInner) => {
@@ -137,9 +136,8 @@ const main = async () => {
     }
 
     await Bluebird.map(
-        domains,
-        (domain) => new Promise((resolve) => {
-            const url = domain + RequestParam;
+        URLs,
+        (url) => new Promise((resolve) => {
             sendRequest(url, RequestMethods).then(() => {
                 resolve();
                 progresBar.increment();
