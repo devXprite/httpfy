@@ -106,15 +106,15 @@ const main = async () => {
     let domains = lines.filter((line) => line.includes("."));
 
     domains = domains.flatMap((domain) => RequestProtocol.map((protocol) => `${protocol}://${domain}`));
+    domains = domains.flatMap((domain) => RequestPath.map((path) => `${domain}/${path}`));
 
-    // console.log(URLs);
     progresBar.start(RequestMethods === "ALL" ? domains.length * SupportedMetods.length : domains.length);
 
     if (RequestMethods === "ALL") {
         await Bluebird.map(
             domains,
             (domain) => new Promise((resolve) => {
-                const url = domain + RequestPath + RequestParam;
+                const url = domain + RequestParam;
 
                 Bluebird.map(
                     SupportedMetods,
@@ -139,7 +139,7 @@ const main = async () => {
     await Bluebird.map(
         domains,
         (domain) => new Promise((resolve) => {
-            const url = domain + RequestPath + RequestParam;
+            const url = domain + RequestParam;
             sendRequest(url, RequestMethods).then(() => {
                 resolve();
                 progresBar.increment();
