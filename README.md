@@ -51,12 +51,6 @@ You need to install Node.js first, then install the tool globally.
 npm install -g -s httpfy
 ```
 
-#### yarn
-
-```bash
-yarn global add httpfy
-```
-
 #### npx
 
 ```bash
@@ -83,3 +77,39 @@ npm remove httpfy -g
 ```bash
 httpfy -f <filename containing urls>
 ```
+
+| Short  | Options             | Type      | Description                                                  |
+| ------ | ------------------- | --------- | ------------------------------------------------------------ |
+| -v     | --version           | probe     | output the current version                                   |
+| -f     | --file              | string    | input file containing list of URLs                           |
+| -sc    | --status-code       | probe     | display response status-code                                 |
+| -cl    | --content-length    | probe     | display response content-length                              |
+| -ct    | --content-type      | probe     | display response content-type                                |
+| -rt    | --response-time     | probe     | display response time                                        |
+| -lc    | --line-count        | probe     | display response body line count                             |
+| -wc    | --word-count        | probe     | display response body word count                             |
+| -ws    | --web-serve         | probe     | display web server name                                      |
+| -rl    | --redirect-location | probe     | display redirect location                                    |
+| -m     | --method            | probe     | display http request method                                  |
+| -nc    | --no-color          | probe     | disable colors in cli output                                 |
+| -ttl   | --title             | probe     | display page title                                           |
+| -fl    | --failed            | probe     | display failed request's                                     |
+| -nr    | --no-redirect       | probe     | don't follow redirects                                       |
+| -mr    | --max-redirect      | number    | maximum redirects to follow                                  |
+| -t     | --threads           | number    | maximum cocurrent requests send (default: 100)               |
+| -i     | --interval          | number    | interval between each thread in seconds                      |
+| -c     | --cookie            | string    | send cookies                                                 |
+| -x     | --request-methods   | string    | set request methods use 'all' to probe all HTTP methods      |
+| -pc    | --protocol          | string    | set request Protocol (default: "https")                      |
+| -path  | --request-path      | string    | path or list of paths  (-path admin,login)                   |
+| -param | --request-param     | string    | set request parameters (-param id=5)                         |
+| -ua    | --user-agent        | string    | set custom useragent                                         |
+| -time  | --timeout           | number    | set request timeout in seconds                               |
+| -mc    | --match-code        | numbers[] | match response with specified status code (-mc 200,404)      |
+| -ml    | --match-length      | numbers[] | match response with specified content length (-ml 800,900)   |
+| -mlc   | --match-line-count  | numbers[] | match response body with specified line count (-mlc 100,102) |
+| -ms    | --match-string      | strings[] | match response with specified strings (-ms admin)            |
+| -o     | --output-file       | string    | save results in a single file                                |
+| -of    | --output-folder     | string    | save results in multiple files accoring status code          |
+| -h     | --help              | probe     | display help for command                                     |
+
