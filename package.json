@@ -1,6 +1,6 @@
 {
     "name": "httpfy",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A Incredible fast and Powerful HTTP toolkit",
     "main": "bin/httpfy.js",
     "type": "commonjs",
@@ -12,7 +12,11 @@
         "prettier": "prettier --check .",
         "prettier:fix": "prettier --write .",
         "format": "npm run prettier:fix && npm run lint:fix",
-        "postinstall": "node ./lib/postinstall.js"
+        "postinstall": "node ./lib/postinstall.js",
+        "release": "standard-version",
+        "release:minor": "standard-version --release-as minor",
+        "release:patch": "standard-version --release-as patch",
+        "release:major": "standard-version --release-as major"
     },
     "repository": {
         "type": "git",
@@ -35,7 +39,8 @@
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-unicorn": "^43.0.2",
-        "prettier": "2.7.1"
+        "prettier": "2.7.1",
+        "standard-version": "^9.5.0"
     },
     "dependencies": {
         "axios": "^0.27.2",
