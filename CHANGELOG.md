@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/devXprite/httpfy/compare/v0.0.4...v0.0.5) (2022-08-17)
+
+
+### Performance
+
+* add .versionrc and update postinstall script ([5c09bc9](https://github.com/devXprite/httpfy/commits/5c09bc940c7604684d1c0121f818a9781d9c066e))
+
 ### [0.0.4](https://github.com/devXprite/httpfy/compare/v0.0.3...v0.0.4) (2022-08-17)
 
 
