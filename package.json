@@ -12,7 +12,7 @@
         "prettier": "prettier --check .",
         "prettier:fix": "prettier --write .",
         "format": "npm run prettier:fix && npm run lint:fix",
-        "postinstall": "node ./lib/postinstall.js",
+        "postinstall": "node ./lib/postInstall.js",
         "release": "standard-version",
         "release:minor": "standard-version --release-as minor",
         "release:patch": "standard-version --release-as patch",
