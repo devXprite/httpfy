@@ -11,7 +11,8 @@
         "lint:fix": "eslint . --ext .js --fix",
         "prettier": "prettier --check .",
         "prettier:fix": "prettier --write .",
-        "format": "npm run prettier:fix && npm run lint:fix"
+        "format": "npm run prettier:fix && npm run lint:fix",
+        "postinstall": "node ./lib/postinstall.js"
     },
     "repository": {
         "type": "git",
@@ -39,6 +40,7 @@
     "dependencies": {
         "axios": "^0.27.2",
         "bluebird": "^3.7.2",
+        "boxen": "^5.1.2",
         "chalk": "^4.1.0",
         "cli-progress": "^3.11.2",
         "commander": "^9.4.0",

@@ -34,7 +34,6 @@
 <!-- GETTING STARTED -->
 
 ## Getting Started
-![HTTPFY Preview](./_includes/getting_started.gif)
 
 ### Prerequisites
 
