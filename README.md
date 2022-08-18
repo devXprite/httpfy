@@ -101,7 +101,8 @@ httpfy -f <filename containing urls>
 | -mr    | --max-redirect      | number    | maximum redirects to follow                                   |
 | -t     | --threads           | number    | maximum cocurrent requests send (default: 100)                |
 | -i     | --interval          | number    | interval between each thread in seconds                       |
-| -c     | --cookie            | string    | send cookies                                                  |
+| -c     | --cookie            | string    | send cookies (--cookie 'login=Yes')                           |
+| -H     | --header            | string    | custom http headers to send (--header 'X-MyHeader: XYZ')      |
 | -x     | --request-methods   | string    | set request methods use 'all' to probe all HTTP methods       |
 | -pc    | --protocol          | string    | set request Protocol (default: "https")                       |
 | -path  | --request-path      | string    | path or list of paths  (-path admin,login)                    |

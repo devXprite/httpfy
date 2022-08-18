@@ -28,6 +28,7 @@ const {
     Cookie,
     Color,
     RequestProtocol,
+    Headers,
 } = httpfyConfig;
 
 /**
@@ -44,6 +45,9 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
+    if (Headers) {
+        config.headers[Headers[0]] = Headers[1];
+    }
     config.headers["request-startTime"] = process.hrtime();
     return config;
 });
