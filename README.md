@@ -35,6 +35,8 @@
 
 ## Getting Started
 
+  ![Basic](_includes/preview.gif)
+
 ### Prerequisites
 
 You need to install Node.js first, then install the tool globally.
