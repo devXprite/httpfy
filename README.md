@@ -124,7 +124,7 @@ httpfy -f <filename containing urls>
 ### Basic
 
 - ```bash
-  httpfy -f urls.txt -sc -rt -ttl
+  httpfy -f urls.txt -sc -ttl -fl
   ```
   ![Basic](_includes/example_basic.gif)
 ### Try all Http Methods
