@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/devXprite/httpfy/compare/v0.0.6...v0.0.7) (2022-08-31)
+
+
+### Features
+
+* add output folder ([ad892dd](https://github.com/devXprite/httpfy/commits/ad892ddcc008a16ae21a09c9b99b79594ac6ae49))
+
+
+### Documentation 
+
+* **readme:** update badges ([a104e33](https://github.com/devXprite/httpfy/commits/a104e331c72882a3960625a60b9bb1b8e65409e4))
+* **readme:** update preview ([fe75c76](https://github.com/devXprite/httpfy/commits/fe75c7648252b5f167ae864c2bdbba2471825b07))
+* update preview ([266f714](https://github.com/devXprite/httpfy/commits/266f714fe02892bae35ef1663c4e653900ffb500))
+
 ### [0.0.6](https://github.com/devXprite/httpfy/compare/v0.0.5...v0.0.6) (2022-08-18)
 
 
