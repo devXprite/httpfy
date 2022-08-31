@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/devxprite/httpfy">
-    <img src="_includes/httpFy_logo.png" alt="Logo" width="280">
+    <img src="static/httpFy_logo.png" alt="Logo" width="280">
   </a>
 
   <p align="center">
@@ -35,7 +35,7 @@
 
 ## Getting Started
 
-  ![Basic](_includes/preview.gif)
+  ![Basic](static/preview.gif)
 
 ### Prerequisites
 
@@ -126,17 +126,17 @@ httpfy -f <filename containing urls>
 - ```bash
   httpfy -f urls.txt -sc -ttl -fl
   ```
-  ![Basic](_includes/example_basic.gif)
+  ![Basic](static/example_basic.gif)
 ### Try all Http Methods
 
 - ```bash
   httpfy -f urls.txt -sc -m -x all
   ```
-  ![All](_includes/example_all.gif)
+  ![All](static/example_all.gif)
 
 ### File/Path Bruteforce
 
 - ```bash
   httpfy -f urls.txt -path admin,login -sc
   ```
-  ![Brute](_includes/example_brute.gif)
+  ![Brute](static/example_brute.gif)
