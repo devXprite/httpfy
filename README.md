@@ -12,14 +12,14 @@
     A Incredible fast and Powerful HTTP toolkit
     <br>
     <br>
-    <img alt="NPM" src="https://img.shields.io/npm/l/httpfy">
+    <img alt="License" src="https://img.shields.io/npm/l/httpfy">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/devxprite/httpfy">
-    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/devxprite/httpfy">
+    <img alt="version" src="https://img.shields.io/npm/v/httpfy">
     <br>
-    <img alt="npm" src="https://img.shields.io/npm/dw/httpfy">
+    <img alt="downloads" src="https://img.shields.io/npm/dw/httpfy">
     <img alt="Libraries.io SourceRank" src="https://img.shields.io/librariesio/sourcerank/npm/httpfy">
-    <img alt="npms.io (quality)" src="https://img.shields.io/npms-io/quality-score/httpfy">
-    <img alt="npms.io (maintenance)" src="https://img.shields.io/npms-io/maintenance-score/httpfy">    
+    <!-- <img alt="npms.io (quality)" src="https://img.shields.io/npms-io/quality-score/httpfy">
+    <img alt="npms.io (maintenance)" src="https://img.shields.io/npms-io/maintenance-score/httpfy">     -->
     <!--
     <a href="https://github.com/devxprite/httpfy"><strong>Explore the docs »</strong></a> -->
     <br />
