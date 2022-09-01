@@ -39,9 +39,17 @@
 
 ### Prerequisites
 
-You need to install Node.js first, then install the tool globally.
-- NodeJs 10.24.1 or later
-- NPM 6.14.12 or later
+
+You need **NodeJs** 10 or later to run this tool. You can install NodeJs :
+
+- On Linux
+  ```sh
+  sudo apt-get install nodejs
+  ```
+- On Termux
+  ```sh
+  pkg install nodejs-lts
+  ```
 
 ## Installation
 
