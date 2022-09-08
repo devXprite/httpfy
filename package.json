@@ -53,6 +53,16 @@
         "lodash": "^4.17.21",
         "update-notifier": "^5.1.0"
     },
+    "keywords": [
+        "OSINT",
+        "NodeJs",
+        "cybersecurity",
+        "infosec",
+        "kali-tools",
+        "termux",
+        "cli",
+        "http"
+    ],
     "bin": {
         "httpfy": "./bin/httpfy.js"
     },

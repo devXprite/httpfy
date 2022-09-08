@@ -100,6 +100,9 @@ const sendRequest = async (url, method) => new Promise((resolve) => {
  * @returns {void}
  */
 const main = async () => {
+    /** @type {Array<Number>} */
+    const startTime = process.hrtime();
+
     /** @type {Array<string>} */
     const lines = await readFile(file);
 
@@ -152,7 +155,9 @@ const main = async () => {
         progresBar.stop();
     });
 
-    print("Done");
+    const endTime = process.hrtime(startTime);
+
+    print(`\n\nScanned total ${chalk.bold(`${URLs.length}URLs`)} in ${chalk.bold(`${endTime[0]}seconds`)}.`);
 };
 
 main();
