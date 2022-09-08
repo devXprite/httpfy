@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/devXprite/httpfy/compare/v0.0.7...v1.0.0) (2022-09-08)
+
+
+### Documentation 
+
+* update readme ([d3e8214](https://github.com/devXprite/httpfy/commits/d3e82140ef00e97b1f158747ece3438e4ab88159))
+
 ### [0.0.7](https://github.com/devXprite/httpfy/compare/v0.0.6...v0.0.7) (2022-08-31)
 
 
