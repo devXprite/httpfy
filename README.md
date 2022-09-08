@@ -18,13 +18,7 @@
     <br>
     <img alt="downloads" src="https://img.shields.io/npm/dw/httpfy">
     <img alt="Libraries.io SourceRank" src="https://img.shields.io/librariesio/sourcerank/npm/httpfy">
-    <!-- <img alt="npms.io (quality)" src="https://img.shields.io/npms-io/quality-score/httpfy">
-    <img alt="npms.io (maintenance)" src="https://img.shields.io/npms-io/maintenance-score/httpfy">     -->
-    <!--
-    <a href="https://github.com/devxprite/httpfy"><strong>Explore the docs »</strong></a> -->
     <br />
-    <a href="https://github.com/devxprite/httpfy">View Demo</a>
-    ·
     <a href="https://github.com/devxprite/httpfy/issues">Report Bug</a>
     ·
     <a href="https://github.com/devxprite/httpfy/issues">Request Feature</a>
@@ -53,21 +47,12 @@ You need **NodeJs** 10 or later to run this tool. You can install NodeJs :
 
 ## Installation
 
-### Global
-
-#### npm
+### Using npm
 
 ```bash
 npm install -g -s httpfy
 ```
-
-#### npx
-
-```bash
-npx httpfy -f <file>
-```
-
-### Local
+### Install locally
 
 ```bash
 git clone https://github.com/devXprite/httpfy.git
@@ -148,3 +133,39 @@ httpfy -f <filename containing urls>
   httpfy -f urls.txt -path admin,login -sc
   ```
   ![Brute](static/example_brute.gif)
+
+
+<!-- GitPod -->
+
+## Run with Gitpod
+
+Click this button to run your project on Gitpod which comes with pre-configured environment you need.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#/https://github.com/devXprite/httpfy)
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Branch 
+3. Commit your Changes 
+4. Push to the Branch 
+5. Open a Pull Request
+ 
+## Supporters
+
+### Stargazers:
+[![Stargazers repo roster for @devXprite/httpfy](https://reporoster.com/stars/dark/devXprite/httpfy)](https://github.com/devXprite/httpfy/stargazers)  
+
+### Forkers
+[![Forkers repo roster for @devXprite/httpfy](https://reporoster.com/forks/dark/devXprite/httpfy)](https://github.com/devXprite/httpfy/network/members)
+
+
+## License
+
+Distributed under the GPL-3.0 license. See `LICENSE.txt` for more information.

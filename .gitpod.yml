@@ -1,0 +1,3 @@
+tasks:
+  - init: npm install httpfy -g
+    command: httpfy -f test/urls.txt -sc -cl -rt -lc -ct
