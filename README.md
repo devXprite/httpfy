@@ -1,7 +1,5 @@
 <div id="top"></div>
 
-> HTTPFY curently in beta so you may see problems. Please open a Issue on GitHub and report them!
-
 <br />
 <div align="center">
   <a href="https://github.com/devxprite/httpfy">
